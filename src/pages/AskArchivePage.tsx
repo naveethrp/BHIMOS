@@ -14,13 +14,15 @@ export const AskArchivePage: React.FC = () => {
       text: question
     };
 
-    let replyText = 'Dr. B. R. Ambedkar was a tireless champion of social equality, constitutional democracy, and educational reform.';
+    let replyText = 'Dr. B. R. Ambedkar served as Chairman of the Drafting Committee, rigorously shaping the fundamental rights, abolition of untouchability, and social democracy framework for the Constitution of India.';
     if (question.includes('Poona Pact')) {
-      replyText = 'The Poona Pact was an agreement reached in September 1932 between Dr. Ambedkar and Mahatma Gandhi, ensuring reserved seats for Depressed Classes within the general electorate rather than separate electorates.';
+      replyText = 'The Poona Pact was signed on 24 September 1932 between Dr. Ambedkar and Mahatma Gandhi, securing 148 reserved seats for the Depressed Classes in provincial legislatures, effectively doubling their political representation under joint electorates.';
     } else if (question.includes('education')) {
-      replyText = 'Dr. Ambedkar regarded education as the greatest weapon of emancipation. He established the People’s Education Society in 1945 and founded Siddharth College in Bombay and Milind College in Aurangabad.';
+      replyText = 'Dr. Ambedkar held that education is the fundamental catalyst for human dignity. His motto "Educate, Agitate, Organize" underscored the institutional founding of the People’s Education Society (1945), Siddharth College in Bombay, and Milind College in Aurangabad.';
     } else if (question.includes('caste')) {
-      replyText = 'In "Annihilation of Caste" (1936), Dr. Ambedkar argued that caste is not a division of labour, but a division of labourers, emphasizing that democracy is not merely a form of government, but primarily a mode of associated living.';
+      replyText = 'In "Annihilation of Caste" (1936), Dr. Ambedkar provided an incisive socio-philosophical critique, proving that caste is not a division of labour, but an unnatural division of labourers backed by religious sanction.';
+    } else if (question.includes('publications')) {
+      replyText = 'Major published works include "Castes in India" (1916), "The Problem of the Rupee" (1923), "Annihilation of Caste" (1936), "Who Were the Shudras?" (1946), "States and Minorities" (1947), and "The Buddha and His Dhamma" (1957).';
     }
 
     const asstMsg: AskMessage = {
@@ -42,18 +44,27 @@ export const AskArchivePage: React.FC = () => {
 
   return (
     <div className="ask-page-container">
-      {/* Left Column: Overview & Suggested Questions */}
+      {/* Left Column: Research Desk Overview & Suggested Inquiries */}
       <aside className="ask-sidebar">
         <div className="ask-intro-box">
-          <span className="ask-eyebrow">Archival Intelligence</span>
+          <div className="ask-desk-header">
+            <span className="ask-eyebrow">SCHOLARLY RESEARCH DESK</span>
+            <div className="ask-books-icon">
+              <img
+                src="/images/composition/law-books-stack.png"
+                alt="Law and Constitutional Books"
+                className="ask-books-img"
+              />
+            </div>
+          </div>
           <h1 className="ask-main-title font-display">Ask the Archive</h1>
           <p className="ask-lead-desc">
-            Get accurate answers grounded in authentic historical records, parliamentary debates, and original writings.
+            Directly query authentic parliamentary records, legal drafts, and published volumes with verbatim evidence citations.
           </p>
         </div>
 
         <div className="suggested-questions-block">
-          <h2 className="suggested-heading">Example Questions</h2>
+          <h2 className="suggested-heading">Recommended Inquiries</h2>
           <ul className="suggested-list">
             {SUGGESTED_QUESTIONS.map((q) => (
               <li key={q}>
@@ -68,6 +79,14 @@ export const AskArchivePage: React.FC = () => {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Archival Provenance Desk Note */}
+        <div className="ask-provenance-note">
+          <span className="provenance-title">Strict Archival Grounding</span>
+          <p className="provenance-desc">
+            Every response is mapped directly to verified primary documents from the Constituent Assembly of India and Government published works.
+          </p>
         </div>
       </aside>
 
@@ -85,19 +104,20 @@ export const AskArchivePage: React.FC = () => {
                   <div className="assistant-header-row">
                     <div className="assistant-avatar-circle">
                       <img
-                        src="/images/portraits/portrait-sepia-sketch.png"
+                        src="/images/composition/ambedkar-cutout-bust.png"
                         alt="Ambedkar Archive"
                         className="asst-avatar-img"
                       />
                     </div>
                     <div className="assistant-text-content">
+                      <div className="asst-title-tag">Dr. Ambedkar Digital Heritage Assistant</div>
                       <p className="assistant-text">{msg.text}</p>
                       
                       {msg.citations && msg.citations.length > 0 && (
                         <div className="citation-pills-row">
                           {msg.citations.map((c) => (
                             <span key={c.id} className="citation-pill">
-                              [{c.badgeNumber}]
+                              [{c.badgeNumber}] {c.title}
                             </span>
                           ))}
                         </div>
@@ -105,10 +125,13 @@ export const AskArchivePage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Grounded Evidence Sources Cards */}
+                  {/* Grounded Evidence Sources Cards (Reference A Screen 6) */}
                   {msg.citations && msg.citations.length > 0 && (
                     <div className="sources-evidence-section">
-                      <span className="sources-header-label">Sources</span>
+                      <div className="sources-title-row">
+                        <span className="sources-header-label">Archival Sources</span>
+                        <span className="sources-verified-badge">✓ Primary Documents</span>
+                      </div>
                       <div className="sources-cards-grid">
                         {msg.citations.map((src) => (
                           <div key={src.id} className="source-citation-card">
@@ -122,9 +145,9 @@ export const AskArchivePage: React.FC = () => {
                               <button
                                 type="button"
                                 className="btn-open-source"
-                                onClick={() => alert(`Opening archival source: ${src.title}`)}
+                                onClick={() => alert(`Opening archival citation: ${src.title}`)}
                               >
-                                View Source →
+                                View Source Record →
                               </button>
                             </div>
                           </div>
@@ -143,7 +166,7 @@ export const AskArchivePage: React.FC = () => {
           <input
             type="text"
             className="ask-input-field"
-            placeholder="Ask a question about Dr. B. R. Ambedkar..."
+            placeholder="Ask a question about Dr. B. R. Ambedkar's speeches, writings, or debates..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             aria-label="Ask a question about Dr. B. R. Ambedkar"

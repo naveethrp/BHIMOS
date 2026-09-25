@@ -1,4 +1,4 @@
-/* Event Detail Page Styles matching Reference A Screen 4 */
+/* Event Detail Page Styles with Layered Depth */
 
 .event-detail-page-container {
   max-width: var(--max-content-width);
@@ -14,6 +14,7 @@
 .detail-top-nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .btn-back-kiosk {
@@ -42,10 +43,16 @@
   line-height: 1;
 }
 
+.detail-breadcrumb-indicator {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
 /* Layout Grid */
 .detail-layout-grid {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 290px 1fr;
   gap: 36px;
   align-items: start;
 }
@@ -57,6 +64,9 @@
   border-radius: var(--border-radius-lg);
   padding: 24px 20px;
   box-shadow: 0 4px 12px rgba(8, 37, 54, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .milestone-box-header {
@@ -64,7 +74,6 @@
   flex-direction: column;
   border-bottom: 1px solid var(--color-paper-border);
   padding-bottom: 14px;
-  margin-bottom: 20px;
 }
 
 .milestone-box-eyebrow {
@@ -145,6 +154,29 @@
   font-weight: 700;
 }
 
+.milestone-seal-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-md);
+  padding: 10px 12px;
+}
+
+.milestone-chakra-seal {
+  width: 28px;
+  height: 28px;
+  opacity: 0.5;
+}
+
+.seal-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.25;
+}
+
 /* Dossier Main Content */
 .detail-main-dossier {
   background-color: var(--color-paper-light);
@@ -157,32 +189,77 @@
   gap: 28px;
 }
 
+/* Layered Dossier Header Stage */
+.dossier-stage-composition {
+  position: relative;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  padding: 24px;
+  background-color: rgba(251, 246, 237, 0.5);
+  border: 1px solid var(--color-paper-border);
+}
+
+.dossier-bg-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dossier-bg-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+}
+
 .dossier-header-row {
+  position: relative;
+  z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 340px;
   gap: 28px;
   align-items: start;
 }
 
 .dossier-year-gold {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--color-gold);
   display: block;
 }
 
 .dossier-title {
-  font-size: 2.35rem;
-  line-height: 1.15;
+  font-size: 2.45rem;
+  line-height: 1.12;
   color: var(--color-navy);
   margin: 4px 0 12px 0;
 }
 
 .dossier-summary {
   font-size: 1.05rem;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--color-text-secondary);
+}
+
+.dossier-supporting-objects {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.scales-justice-img {
+  width: 90px;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+
+.law-books-mini-img {
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
 }
 
 .dossier-portrait-quote-box {
@@ -193,36 +270,50 @@
 
 .dossier-portrait-img-box {
   width: 100%;
-  height: 150px;
+  height: 180px;
   border-radius: var(--border-radius-md);
   overflow: hidden;
-  border: 1px solid var(--color-paper-border);
+  border: 1px solid rgba(168, 120, 32, 0.35);
+  background-color: var(--color-navy);
+  box-shadow: 0 6px 16px rgba(8, 37, 54, 0.18);
 }
 
 .dossier-portrait {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
 }
 
 .dossier-quote-figure {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
   border-left: 3px solid var(--color-gold);
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+  box-shadow: 0 2px 8px rgba(8, 37, 54, 0.05);
+  position: relative;
+}
+
+.dossier-quote-mark {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 0.8;
+  color: var(--color-gold);
+  display: block;
 }
 
 .dossier-quote-figure blockquote {
   font-size: 0.95rem;
   font-style: italic;
   color: var(--color-text-primary);
-  line-height: 1.35;
-  margin-bottom: 4px;
+  line-height: 1.4;
+  margin-bottom: 6px;
 }
 
 .dossier-quote-figure figcaption {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--color-gold);
 }
 
@@ -295,6 +386,12 @@
   gap: 14px;
 }
 
+.related-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .related-section-title {
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -302,6 +399,12 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-navy);
+}
+
+.related-count-note {
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  font-weight: 600;
 }
 
 .related-cards-track {
@@ -314,15 +417,22 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px;
+  padding: 12px 14px;
   background-color: var(--color-white);
   border: 1px solid var(--color-paper-border);
   border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.related-card-item:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 4px 12px rgba(8, 37, 54, 0.08);
 }
 
 .related-card-thumb {
-  width: 60px;
-  height: 50px;
+  width: 64px;
+  height: 52px;
   border-radius: var(--border-radius-sm);
   overflow: hidden;
   background-color: var(--color-navy);
@@ -338,6 +448,7 @@
 .related-card-info {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .related-card-name {
@@ -350,6 +461,11 @@
 .related-card-type {
   font-size: 0.75rem;
   color: var(--color-text-secondary);
+}
+
+.related-card-arrow {
+  font-size: 1.2rem;
+  color: var(--color-gold);
 }
 
 @media (max-width: 1024px) {

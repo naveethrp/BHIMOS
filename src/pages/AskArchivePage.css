@@ -1,8 +1,8 @@
-/* Ask the Archive Page Styles matching Reference A Screen 6 */
+/* Ask the Archive Research Desk Styles */
 
 .ask-page-container {
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: 360px 1fr;
   gap: 36px;
   max-width: var(--max-content-width);
   margin: 0 auto;
@@ -26,14 +26,30 @@
   box-shadow: 0 4px 16px rgba(8, 37, 54, 0.04);
 }
 
+.ask-desk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
 .ask-eyebrow {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--color-gold);
-  display: block;
-  margin-bottom: 6px;
+}
+
+.ask-books-icon {
+  width: 48px;
+  height: 32px;
+}
+
+.ask-books-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .ask-main-title {
@@ -57,7 +73,7 @@
 }
 
 .suggested-heading {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -92,12 +108,36 @@
 
 .suggested-q-btn:hover {
   border-color: var(--color-gold);
-  background-color: rgba(168, 120, 32, 0.05);
+  background-color: rgba(168, 120, 32, 0.06);
 }
 
 .suggested-arrow {
   color: var(--color-gold);
   font-size: 1.2rem;
+}
+
+.ask-provenance-note {
+  background: rgba(251, 246, 237, 0.7);
+  border: 1px dashed var(--color-paper-border);
+  border-radius: var(--border-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.provenance-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  letter-spacing: 0.06em;
+}
+
+.provenance-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
 }
 
 /* Chat Workspace */
@@ -156,22 +196,34 @@
 }
 
 .assistant-avatar-circle {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--color-gold);
+  background-color: var(--color-navy);
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(8, 37, 54, 0.15);
 }
 
 .asst-avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%;
 }
 
 .assistant-text-content {
   flex: 1;
+}
+
+.asst-title-tag {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+  margin-bottom: 6px;
 }
 
 .assistant-text {
@@ -183,15 +235,17 @@
 
 .citation-pills-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
 .citation-pill {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--color-gold);
+  color: var(--color-navy);
   background-color: rgba(168, 120, 32, 0.12);
-  padding: 2px 8px;
+  border: 1px solid rgba(168, 120, 32, 0.3);
+  padding: 3px 10px;
   border-radius: var(--border-radius-full);
 }
 
@@ -202,14 +256,25 @@
   border-top: 1px solid var(--color-paper-border);
 }
 
+.sources-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
 .sources-header-label {
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-navy);
-  display: block;
-  margin-bottom: 14px;
+}
+
+.sources-verified-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2F6851;
 }
 
 .sources-cards-grid {
@@ -225,6 +290,12 @@
   padding: 14px;
   display: flex;
   gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.source-citation-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 4px 12px rgba(8, 37, 54, 0.08);
 }
 
 .source-card-badge-col {

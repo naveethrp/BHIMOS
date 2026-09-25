@@ -35,16 +35,11 @@ export const Header: React.FC<HeaderProps> = ({
         aria-label="Ambedkar Digital Heritage Archive Home"
       >
         <div className="brand-emblem">
-          <svg viewBox="0 0 40 40" className="emblem-svg" fill="none" stroke="currentColor">
-            {/* Architectural dome & Ashoka Chakra motif inspired by Reference B */}
-            <circle cx="20" cy="20" r="18" stroke="#A87820" strokeWidth="1.5" />
-            <path d="M10 28 L10 20 Q20 10 30 20 L30 28 Z" stroke="#F5EBDD" strokeWidth="1.5" />
-            <circle cx="20" cy="18" r="4" stroke="#A87820" strokeWidth="1.2" />
-            <line x1="8" y1="28" x2="32" y2="28" stroke="#A87820" strokeWidth="1.5" />
-            <line x1="14" y1="28" x2="14" y2="22" stroke="#F5EBDD" strokeWidth="1" />
-            <line x1="20" y1="28" x2="20" y2="22" stroke="#F5EBDD" strokeWidth="1" />
-            <line x1="26" y1="28" x2="26" y2="22" stroke="#F5EBDD" strokeWidth="1" />
-          </svg>
+          <img
+            src="/images/composition/ambedkar-emblem-logo.png"
+            alt="Ambedkar Digital Heritage Archive emblem"
+            className="emblem-img"
+          />
         </div>
         <div className="brand-text">
           <h1 className="brand-title">AMBEDKAR</h1>

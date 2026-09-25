@@ -17,16 +17,16 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
   const event = TIMELINE_EVENTS.find((e) => e.id === eventId) || TIMELINE_EVENTS[4];
 
   const milestones = [
-    { year: 1946, label: 'Constituent Assembly' },
-    { year: 1947, label: 'Drafting Committee', active: true },
-    { year: 1949, label: 'Final Draft' },
-    { year: 1950, label: 'Constitution Adopted' },
-    { year: 1956, label: 'Final Years' }
+    { year: 1946, label: 'Constituent Assembly Convenes' },
+    { year: 1947, label: 'Drafting Committee Appointed', active: true },
+    { year: 1949, label: 'Final Draft Presented (17 Nov)' },
+    { year: 1950, label: 'Constitution of India Enacted' },
+    { year: 1956, label: 'Final Architectural Legacy' }
   ];
 
   return (
     <div className="event-detail-page-container">
-      {/* Top Breadcrumb & Back Action */}
+      {/* Top Breadcrumb Navigation */}
       <div className="detail-top-nav">
         <button
           type="button"
@@ -36,6 +36,9 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
         >
           <span className="back-arrow">←</span> Back to Timeline
         </button>
+        <span className="detail-breadcrumb-indicator">
+          Constitutional Journey (1947–1956) / {event.title}
+        </span>
       </div>
 
       <div className="detail-layout-grid">
@@ -63,32 +66,68 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
               </div>
             ))}
           </div>
+
+          {/* Archival State Seal in Sidebar */}
+          <div className="milestone-seal-card">
+            <img
+              src="/images/composition/ashoka-chakra-blue.png"
+              alt=""
+              className="milestone-chakra-seal"
+            />
+            <span className="seal-text">Official Constituent Assembly Record</span>
+          </div>
         </aside>
 
         {/* Right Main Editorial Dossier */}
         <main className="detail-main-dossier">
-          {/* Header Row: Title on Left, Portrait & Quote on Right */}
-          <div className="dossier-header-row">
-            <div className="dossier-title-col">
-              <span className="dossier-year-gold">{event.year}</span>
-              <h1 className="dossier-title font-display">{event.title}</h1>
-              <p className="dossier-summary">{event.summary}</p>
+          {/* Layered Dossier Header Stage (Reference A Screen 4) */}
+          <div className="dossier-stage-composition">
+            {/* Background Parchment & Architecture */}
+            <div className="dossier-bg-atmosphere" aria-hidden="true">
+              <img
+                src="/images/composition/canvas-parchment-parliament.png"
+                alt=""
+                className="dossier-bg-canvas"
+              />
             </div>
 
-            <div className="dossier-portrait-quote-box">
-              <div className="dossier-portrait-img-box">
-                <img
-                  src="/images/portraits/master-portrait-formal.jpg"
-                  alt="Dr. B. R. Ambedkar"
-                  className="dossier-portrait"
-                />
+            <div className="dossier-header-row">
+              <div className="dossier-title-col">
+                <span className="dossier-year-gold">{event.year}</span>
+                <h1 className="dossier-title font-display">{event.title}</h1>
+                <p className="dossier-summary">{event.summary}</p>
+
+                <div className="dossier-supporting-objects">
+                  <img
+                    src="/images/composition/scales-justice-gavel.png"
+                    alt="Scales of Justice"
+                    className="scales-justice-img"
+                  />
+                  <img
+                    src="/images/composition/law-books-stack.png"
+                    alt="Constitutional Law Volumes"
+                    className="law-books-mini-img"
+                  />
+                </div>
               </div>
-              <figure className="dossier-quote-figure">
-                <blockquote className="font-display">
-                  “We are going to enter into a life of contradictions. In politics we will have equality and in social and economic life we will have inequality.”
-                </blockquote>
-                <figcaption>— B. R. Ambedkar</figcaption>
-              </figure>
+
+              {/* Primary Subject Cutout & Master Quote */}
+              <div className="dossier-portrait-quote-box">
+                <div className="dossier-portrait-img-box">
+                  <img
+                    src="/images/composition/ambedkar-cutout-chairman.png"
+                    alt="Dr. B. R. Ambedkar presiding over Drafting Committee"
+                    className="dossier-portrait"
+                  />
+                </div>
+                <figure className="dossier-quote-figure">
+                  <span className="dossier-quote-mark" aria-hidden="true">“</span>
+                  <blockquote className="font-display">
+                    We are going to enter into a life of contradictions. In politics we will have equality and in social and economic life we will have inequality.
+                  </blockquote>
+                  <figcaption>— Dr. B. R. Ambedkar</figcaption>
+                </figure>
+              </div>
             </div>
           </div>
 
@@ -156,7 +195,10 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
 
           {/* Related Archive Strip (Reference A Screen 4) */}
           <section className="detail-related-archive-section">
-            <h2 className="related-section-title">Related Archive Material</h2>
+            <div className="related-section-header">
+              <h2 className="related-section-title">Related Archive Material</h2>
+              <span className="related-count-note">3 Verified Documents Mapped</span>
+            </div>
             <div className="related-cards-track">
               {event.sources?.map((src) => (
                 <div key={src.id} className="related-card-item">
@@ -164,10 +206,10 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                     <img
                       src={
                         src.type === 'video'
-                          ? '/images/historical/parliament-crowd.png'
+                          ? '/images/composition/ambedkar-speech-assembly.png'
                           : src.type === 'document'
                           ? '/images/textures/paper-manuscript.png'
-                          : '/images/textures/constitution-preamble.png'
+                          : '/images/composition/constitution-preamble-art.png'
                       }
                       alt=""
                       className="related-thumb-img"
@@ -177,6 +219,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                     <span className="related-card-name">{src.title}</span>
                     <span className="related-card-type">{src.meta}</span>
                   </div>
+                  <span className="related-card-arrow">›</span>
                 </div>
               ))}
             </div>

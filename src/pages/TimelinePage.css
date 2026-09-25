@@ -1,4 +1,4 @@
-/* Timeline Page Styles matching Reference A Screen 3 */
+/* Timeline Page Styles with Evolving Era Stages */
 
 .timeline-page-container {
   max-width: var(--max-content-width);
@@ -8,11 +8,21 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 28px;
 }
 
 .timeline-header-block {
   text-align: center;
+}
+
+.timeline-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 6px;
 }
 
 .timeline-page-title {
@@ -64,13 +74,8 @@
 }
 
 .era-icon-wrapper {
-  color: var(--color-gold);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   margin-bottom: 4px;
-}
-
-.era-tab-active .era-icon-wrapper {
-  color: var(--color-gold-light);
 }
 
 .era-title {
@@ -85,10 +90,138 @@
   margin-top: 2px;
 }
 
+/* Dynamic Era Feature Stage */
+.era-dynamic-stage {
+  position: relative;
+  min-height: 240px;
+  background-color: var(--color-paper-light);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 32px 48px;
+  box-shadow: 0 6px 20px rgba(8, 37, 54, 0.06);
+}
+
+.era-stage-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.era-bg-texture-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+
+.era-stage-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 246, 237, 0.95) 0%,
+    rgba(251, 246, 237, 0.85) 60%,
+    rgba(251, 246, 237, 0.4) 100%
+  );
+}
+
+.era-cutout-composition {
+  position: absolute;
+  right: 40px;
+  bottom: 0;
+  height: 100%;
+  width: 440px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.era-cutout-group {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.era-cutout-standing-img {
+  position: absolute;
+  right: 80px;
+  bottom: 0;
+  height: 110%;
+  object-fit: contain;
+  filter: drop-shadow(4px 8px 16px rgba(8, 37, 54, 0.35));
+  z-index: 2;
+}
+
+.era-accents-books-img {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  width: 130px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  z-index: 3;
+}
+
+.era-backdrop-parliament-img {
+  position: absolute;
+  right: 180px;
+  bottom: 10px;
+  width: 240px;
+  opacity: 0.45;
+  z-index: 1;
+}
+
+.era-cutout-bust-img {
+  position: absolute;
+  right: 60px;
+  bottom: 0;
+  height: 110%;
+  object-fit: contain;
+  filter: drop-shadow(4px 8px 16px rgba(8, 37, 54, 0.35));
+}
+
+.era-accents-pen-img {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 120px;
+}
+
+.era-contextual-content {
+  position: relative;
+  z-index: 3;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.era-badge-indicator {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+
+.era-headline {
+  font-size: 2.2rem;
+  color: var(--color-navy);
+}
+
+.era-summary-text {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
 /* Horizontal Track */
 .timeline-horizontal-wrapper {
   position: relative;
-  padding: 40px 0;
+  padding: 36px 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -134,7 +267,7 @@
 
 .timeline-year-badge {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--color-navy);
 }
@@ -163,24 +296,53 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-event-card-wrapper:hover .timeline-event-card {
+  border-color: rgba(168, 120, 32, 0.5);
+  box-shadow: 0 8px 24px rgba(8, 37, 54, 0.12);
 }
 
 .timeline-card-image-box {
-  height: 130px;
+  height: 140px;
   background-color: var(--color-navy-dark);
   overflow: hidden;
+  position: relative;
 }
 
 .timeline-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: sepia(0.2) contrast(1.05);
+  filter: sepia(0.15) contrast(1.05);
+}
+
+.timeline-flagship-pill {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--color-gold);
+  color: var(--color-white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--border-radius-full);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .timeline-card-body {
   padding: 16px 18px;
   flex: 1;
+}
+
+.timeline-card-date {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 4px;
 }
 
 .timeline-card-title {
@@ -226,6 +388,9 @@
 @media (max-width: 1024px) {
   .era-selector-bar {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .era-cutout-composition {
+    display: none;
   }
 }
 
