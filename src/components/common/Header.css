@@ -1,0 +1,152 @@
+.global-header {
+  height: var(--header-height);
+  background-color: var(--color-navy);
+  border-bottom: 1px solid rgba(168, 120, 32, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(6, 29, 43, 0.4);
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--border-radius-md);
+  transition: opacity 0.15s ease;
+}
+
+.brand-container:hover {
+  opacity: 0.95;
+}
+
+.brand-emblem {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emblem-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: var(--color-white);
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.brand-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--color-gold-light);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Nav styles matching Reference A pill treatment */
+.global-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.nav-button {
+  height: 46px;
+  padding: 0 20px;
+  border-radius: var(--border-radius-full);
+  color: #D1D9E0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.nav-button:hover {
+  color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-button-active {
+  background-color: var(--color-navy-dark);
+  color: var(--color-white);
+  border: 1px solid rgba(168, 120, 32, 0.4);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+/* Language selector */
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--color-navy-dark);
+  border: 1px solid rgba(168, 120, 32, 0.35);
+  border-radius: var(--border-radius-full);
+  padding: 4px 10px;
+  height: 44px;
+}
+
+.lang-btn {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #9BAAB5;
+  border-radius: var(--border-radius-full);
+  transition: all 0.15s ease;
+}
+
+.lang-btn-active {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .global-header {
+    padding: 0 16px;
+    height: 70px;
+  }
+  .brand-title {
+    font-size: 1.05rem;
+  }
+  .nav-button {
+    height: 40px;
+    padding: 0 12px;
+    font-size: 0.85rem;
+  }
+}

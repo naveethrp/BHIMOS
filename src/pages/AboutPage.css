@@ -1,0 +1,105 @@
+/* About Page Styles */
+
+.about-page-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 32px 32px 48px 32px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.about-header-block {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.about-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.about-title {
+  font-size: 2.75rem;
+  color: var(--color-navy);
+  margin-bottom: 14px;
+}
+
+.about-lead {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.about-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-card {
+  background-color: var(--color-paper-light);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-lg);
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(8, 37, 54, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about-card-badge {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-gold);
+}
+
+.about-card-title {
+  font-size: 1.35rem;
+  color: var(--color-navy);
+}
+
+.about-card-text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+.about-quote-block {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  border-radius: var(--border-radius-xl);
+  padding: 36px 40px;
+  border: 1px solid rgba(168, 120, 32, 0.3);
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(8, 37, 54, 0.2);
+}
+
+.about-quote {
+  font-size: 1.6rem;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.about-quote-author {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-gold-light);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .about-sections-grid {
+    grid-template-columns: 1fr;
+  }
+}

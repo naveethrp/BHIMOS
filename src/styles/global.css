@@ -1,0 +1,122 @@
+@import './tokens.css';
+
+/* Global Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  user-select: none; /* Kiosk touch-friendly default */
+  touch-action: manipulation;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-paper);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(251, 246, 237, 0.6) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(233, 220, 200, 0.4) 0%, transparent 70%);
+}
+
+/* Typography Rules */
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+p, span, div, a, button, input {
+  font-family: var(--font-sans);
+}
+
+/* Accessible Interactive Focus */
+:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Kiosk Buttons Base */
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease-in-out;
+  touch-action: manipulation;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Touch Targets Enforcement */
+.kiosk-touch {
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+}
+
+.kiosk-touch-lg {
+  min-height: var(--touch-target-standard);
+  min-width: var(--touch-target-standard);
+}
+
+/* Archival Paper Texture Classes */
+.bg-paper-light {
+  background-color: var(--color-paper-light);
+}
+
+.bg-paper {
+  background-color: var(--color-paper);
+}
+
+.bg-navy {
+  background-color: var(--color-navy);
+  color: var(--color-text-inverse);
+}
+
+.bg-navy-dark {
+  background-color: var(--color-navy-dark);
+  color: var(--color-text-inverse);
+}
+
+/* Decorative Divider */
+.archival-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 24px 0;
+  width: 100%;
+}
+
+.archival-divider::before,
+.archival-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-paper-border);
+}
+
+.archival-divider .chakra-mark {
+  width: 24px;
+  height: 24px;
+  opacity: 0.6;
+}

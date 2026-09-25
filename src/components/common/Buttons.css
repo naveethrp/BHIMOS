@@ -1,0 +1,56 @@
+.btn-archival-primary {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  border: 1px solid rgba(168, 120, 32, 0.4);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  padding: 0 24px;
+  gap: 12px;
+  box-shadow: 0 2px 6px rgba(168, 120, 32, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-archival-primary:hover {
+  background-color: var(--color-gold-hover);
+  box-shadow: 0 4px 12px rgba(168, 120, 32, 0.35);
+}
+
+.btn-archival-secondary {
+  background-color: var(--color-paper-light);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0 24px;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-archival-secondary:hover {
+  background-color: var(--color-paper-aged);
+  border-color: rgba(90, 68, 38, 0.3);
+}
+
+.btn-standard {
+  height: var(--touch-target-standard);
+  min-height: var(--touch-target-min);
+}
+
+.btn-large {
+  height: var(--touch-target-kiosk-major);
+  padding: 0 32px;
+  font-size: 1.1rem;
+}
+
+.btn-arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.btn-archival-primary:hover .btn-arrow {
+  transform: translateX(4px);
+}

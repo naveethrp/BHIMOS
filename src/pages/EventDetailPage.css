@@ -1,0 +1,362 @@
+/* Event Detail Page Styles matching Reference A Screen 4 */
+
+.event-detail-page-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 24px 32px 48px 32px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-top-nav {
+  display: flex;
+  align-items: center;
+}
+
+.btn-back-kiosk {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-paper-light);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-full);
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  box-shadow: 0 2px 6px rgba(8, 37, 54, 0.05);
+  transition: all 0.2s ease;
+  min-height: var(--touch-target-min);
+}
+
+.btn-back-kiosk:hover {
+  background-color: var(--color-paper-aged);
+  border-color: rgba(90, 68, 38, 0.35);
+}
+
+.back-arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Layout Grid */
+.detail-layout-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+/* Vertical Milestones Sidebar */
+.detail-vertical-milestones {
+  background-color: var(--color-paper-light);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-lg);
+  padding: 24px 20px;
+  box-shadow: 0 4px 12px rgba(8, 37, 54, 0.04);
+}
+
+.milestone-box-header {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-paper-border);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.milestone-box-eyebrow {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.milestone-box-years {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.vertical-timeline-track {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vertical-node-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+  padding-bottom: 18px;
+}
+
+.vertical-marker-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 16px;
+}
+
+.marker-bullet {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #D1C5B4;
+  border: 2px solid var(--color-paper-light);
+  box-shadow: 0 0 0 1px #B09F8C;
+  z-index: 1;
+}
+
+.vertical-node-active .marker-bullet {
+  background-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(168, 120, 32, 0.3);
+}
+
+.marker-stem {
+  width: 2px;
+  flex: 1;
+  background-color: var(--color-paper-border);
+  min-height: 28px;
+  margin-top: 4px;
+}
+
+.marker-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.marker-year {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-navy);
+}
+
+.marker-label {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.25;
+}
+
+.vertical-node-active .marker-label {
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+/* Dossier Main Content */
+.detail-main-dossier {
+  background-color: var(--color-paper-light);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-xl);
+  padding: 32px;
+  box-shadow: 0 4px 16px rgba(8, 37, 54, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.dossier-header-row {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 28px;
+  align-items: start;
+}
+
+.dossier-year-gold {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  display: block;
+}
+
+.dossier-title {
+  font-size: 2.35rem;
+  line-height: 1.15;
+  color: var(--color-navy);
+  margin: 4px 0 12px 0;
+}
+
+.dossier-summary {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.dossier-portrait-quote-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dossier-portrait-img-box {
+  width: 100%;
+  height: 150px;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-paper-border);
+}
+
+.dossier-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dossier-quote-figure {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-left: 3px solid var(--color-gold);
+  padding: 12px 16px;
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+}
+
+.dossier-quote-figure blockquote {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.dossier-quote-figure figcaption {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+/* Tabs */
+.dossier-tabs-nav {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid var(--color-paper-border);
+  padding-bottom: 2px;
+}
+
+.dossier-tab-btn {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  transition: all 0.2s ease;
+  min-height: var(--touch-target-min);
+}
+
+.dossier-tab-btn:hover {
+  color: var(--color-navy);
+  background-color: rgba(168, 120, 32, 0.08);
+}
+
+.tab-btn-active {
+  color: var(--color-white);
+  background-color: var(--color-navy);
+}
+
+.dossier-tab-panel {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-md);
+  padding: 24px;
+  min-height: 120px;
+}
+
+.tab-body-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.tab-people-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+}
+
+.person-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-paper-light);
+  border: 1px solid var(--color-paper-border);
+  padding: 8px 16px;
+  border-radius: var(--border-radius-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-navy);
+}
+
+/* Related Archive Strip */
+.detail-related-archive-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.related-section-title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-navy);
+}
+
+.related-cards-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.related-card-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--border-radius-md);
+}
+
+.related-card-thumb {
+  width: 60px;
+  height: 50px;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  background-color: var(--color-navy);
+  flex-shrink: 0;
+}
+
+.related-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.related-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.related-card-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.25;
+}
+
+.related-card-type {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .detail-layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .dossier-header-row {
+    grid-template-columns: 1fr;
+  }
+}

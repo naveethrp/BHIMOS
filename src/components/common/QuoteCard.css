@@ -1,0 +1,67 @@
+.quote-card {
+  padding: 24px 28px;
+  border-radius: var(--border-radius-lg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-subtle);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1;
+  opacity: 0.6;
+  margin-bottom: -10px;
+}
+
+.quote-text {
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.quote-author {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+/* Variants from Reference B section 9 */
+.quote-card-paper {
+  background-color: var(--color-paper-light);
+  border: 1px solid var(--color-paper-border);
+  color: var(--color-text-primary);
+}
+
+.quote-card-paper .quote-mark {
+  color: var(--color-gold);
+}
+
+.quote-card-navy {
+  background-color: var(--color-navy);
+  border: 1px solid rgba(168, 120, 32, 0.3);
+  color: var(--color-white);
+}
+
+.quote-card-navy .quote-mark {
+  color: var(--color-gold-light);
+}
+
+.quote-card-navy .quote-author {
+  color: var(--color-gold-light);
+}
+
+.quote-card-ochre {
+  background-color: var(--color-paper-aged);
+  border: 1px solid rgba(168, 120, 32, 0.35);
+  color: #3D2912;
+}
+
+.quote-card-ochre .quote-mark {
+  color: var(--color-gold);
+}
