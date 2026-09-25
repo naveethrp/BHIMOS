@@ -19,6 +19,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             alt=""
             className="canvas-bg-img"
           />
+          <img
+            src="/images/composition/classical-clouds.jpg"
+            alt=""
+            className="canvas-clouds-overlay"
+          />
           <div className="canvas-gradient-overlay"></div>
         </div>
 

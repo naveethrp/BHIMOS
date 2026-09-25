@@ -40,6 +40,19 @@
   filter: contrast(1.05) saturate(0.95);
 }
 
+.canvas-clouds-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 70%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+  filter: contrast(1.1) brightness(1.05);
+  pointer-events: none;
+}
+
 .canvas-gradient-overlay {
   position: absolute;
   inset: 0;
