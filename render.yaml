@@ -1,7 +1,7 @@
 services:
   - type: web
     name: bhimos-backend
-    runtime: docker
+    env: docker
     dockerfilePath: ./Dockerfile.backend
     region: oregon
     plan: starter
