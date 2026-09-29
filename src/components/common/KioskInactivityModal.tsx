@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { PrimaryButton, SecondaryButton } from './Buttons';
+import './KioskInactivityModal.css';
 
 interface KioskInactivityModalProps {
   onTimeoutReturnHome: () => void;
@@ -12,13 +13,18 @@ export const KioskInactivityModal: React.FC<KioskInactivityModalProps> = ({
   inactivityThresholdSeconds = 75,
   countdownSeconds = 15
 }) => {
+  // Only activate in explicit kiosk installations. On normal web, do not interrupt readers.
+  const isKioskEnabled = import.meta.env.VITE_ENABLE_KIOSK_MODE === 'true';
+  const effectiveTimeout = Number(import.meta.env.VITE_KIOSK_TIMEOUT_SECONDS) || inactivityThresholdSeconds;
+
   const [showWarning, setShowWarning] = useState(false);
   const [remainingTime, setRemainingTime] = useState(countdownSeconds);
   const warningTimerRef = useRef<number | null>(null);
   const countdownIntervalRef = useRef<number | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const resetInactivityTimer = useCallback(() => {
-    if (showWarning) return; // Warning already active, do not cancel via background movement
+    if (!isKioskEnabled || showWarning) return;
 
     if (warningTimerRef.current) {
       window.clearTimeout(warningTimerRef.current);
@@ -27,8 +33,8 @@ export const KioskInactivityModal: React.FC<KioskInactivityModalProps> = ({
     warningTimerRef.current = window.setTimeout(() => {
       setShowWarning(true);
       setRemainingTime(countdownSeconds);
-    }, inactivityThresholdSeconds * 1000);
-  }, [inactivityThresholdSeconds, countdownSeconds, showWarning]);
+    }, effectiveTimeout * 1000);
+  }, [isKioskEnabled, effectiveTimeout, countdownSeconds, showWarning]);
 
   // Activity listeners
   useEffect(() => {
@@ -66,6 +72,13 @@ export const KioskInactivityModal: React.FC<KioskInactivityModalProps> = ({
     };
   }, [showWarning, onTimeoutReturnHome]);
 
+  // Focus management for modal
+  useEffect(() => {
+    if (showWarning && modalRef.current) {
+      modalRef.current.focus();
+    }
+  }, [showWarning]);
+
   const handleContinueExploring = () => {
     setShowWarning(false);
     resetInactivityTimer();
@@ -76,89 +89,31 @@ export const KioskInactivityModal: React.FC<KioskInactivityModalProps> = ({
     onTimeoutReturnHome();
   };
 
-  if (!showWarning) return null;
+  if (!isKioskEnabled || !showWarning) return null;
 
   return (
     <div
+      ref={modalRef}
       role="dialog"
       aria-modal="true"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'rgba(6, 29, 43, 0.75)',
-        backdropFilter: 'blur(4px)',
-        zIndex: 9999,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '24px'
-      }}
+      aria-labelledby="kiosk-idle-title"
+      aria-describedby="kiosk-idle-desc"
+      className="kiosk-inactivity-modal-backdrop"
+      tabIndex={-1}
     >
-      <div
-        style={{
-          backgroundColor: 'var(--color-paper-light)',
-          border: '2px solid var(--color-gold)',
-          borderRadius: 'var(--border-radius-xl)',
-          padding: '36px',
-          maxWidth: '520px',
-          width: '100%',
-          boxShadow: '0 16px 36px rgba(0, 0, 0, 0.4)',
-          textAlign: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '16px'
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.85rem',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            color: 'var(--color-gold)'
-          }}
-        >
+      <div className="kiosk-inactivity-modal-card">
+        <span className="kiosk-idle-eyebrow" id="kiosk-idle-eyebrow">
           Kiosk Session Idle
         </span>
-        <h3
-          className="font-display"
-          style={{
-            fontSize: '1.75rem',
-            color: 'var(--color-text-primary)',
-            margin: 0
-          }}
-        >
+        <h3 className="font-display" id="kiosk-idle-title">
           Still Exploring?
         </h3>
-        <p
-          style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '1.05rem',
-            color: 'var(--color-text-secondary)',
-            lineHeight: 1.5,
-            margin: 0
-          }}
-        >
-          To prepare for the next visitor, the kiosk will return to the home screen in{' '}
-          <strong style={{ color: 'var(--color-navy)', fontSize: '1.2rem' }}>
-            {remainingTime}s
-          </strong>.
+        <p id="kiosk-idle-desc" className="kiosk-idle-desc">
+          To prepare for the next visitor, the kiosk will return to the home screen in
+          <strong className="kiosk-idle-countdown">{remainingTime}s</strong>.
         </p>
 
-        <div
-          style={{
-            display: 'flex',
-            gap: '16px',
-            marginTop: '12px',
-            width: '100%',
-            justifyContent: 'center'
-          }}
-        >
+        <div className="kiosk-idle-actions">
           <PrimaryButton onClick={handleContinueExploring} size="large">
             Continue Exploring
           </PrimaryButton>

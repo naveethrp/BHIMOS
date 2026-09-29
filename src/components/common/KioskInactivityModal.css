@@ -1,0 +1,116 @@
+/* Kiosk Inactivity Modal - Museum Quality */
+
+.kiosk-inactivity-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 29, 43, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: modal-fade-in 0.2s var(--easing-decelerate);
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.kiosk-inactivity-modal-card {
+  background-color: var(--color-paper-light);
+  border: 2px solid var(--color-gold);
+  border-radius: var(--border-radius-xl);
+  padding: 36px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: modal-slide-up 0.3s var(--easing-decelerate);
+}
+
+@keyframes modal-slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kiosk-idle-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-gold);
+}
+
+.kiosk-inactivity-modal-card h3 {
+  font-size: 1.75rem;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.kiosk-idle-desc {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.kiosk-idle-countdown {
+  color: var(--color-navy);
+  font-size: 1.2rem;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.kiosk-idle-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.kiosk-idle-actions button {
+  flex: 1;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+@media (max-width: 560px) {
+  .kiosk-inactivity-modal-card {
+    padding: 24px;
+    margin: 16px;
+  }
+  
+  .kiosk-inactivity-modal-card h3 {
+    font-size: 1.5rem;
+  }
+  
+  .kiosk-idle-desc {
+    font-size: 1rem;
+  }
+  
+  .kiosk-idle-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .kiosk-idle-actions button {
+    width: 100%;
+    max-width: none;
+  }
+}

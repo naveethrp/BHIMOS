@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="scan-beam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00E5FF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0.8"/>
+    </linearGradient>
+    <radialGradient id="manuscript-glow" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FBF7EE"/>
+      <stop offset="85%" stop-color="#EADDC7"/>
+      <stop offset="100%" stop-color="#C2B093"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dark Archival Lab Background -->
+  <rect width="800" height="600" fill="#061622"/>
+
+  <!-- Archival Lab Grid Texture -->
+  <g stroke="#0E2D44" stroke-width="1" opacity="0.6">
+    <line x1="0" y1="60" x2="800" y2="60"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="180" x2="800" y2="180"/>
+    <line x1="0" y1="240" x2="800" y2="240"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="0" y1="420" x2="800" y2="420"/>
+    <line x1="0" y1="480" x2="800" y2="480"/>
+    <line x1="0" y1="540" x2="800" y2="540"/>
+    <line x1="80" y1="0" x2="80" y2="600"/>
+    <line x1="160" y1="0" x2="160" y2="600"/>
+    <line x1="240" y1="0" x2="240" y2="600"/>
+    <line x1="320" y1="0" x2="320" y2="600"/>
+    <line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="480" y1="0" x2="480" y2="600"/>
+    <line x1="560" y1="0" x2="560" y2="600"/>
+    <line x1="640" y1="0" x2="640" y2="600"/>
+    <line x1="720" y1="0" x2="720" y2="600"/>
+  </g>
+
+  <!-- Angled Manuscript Folio Sheet Being Digitized -->
+  <g transform="translate(60, 40)">
+    <rect x="0" y="0" width="460" height="520" rx="4" fill="url(#manuscript-glow)" stroke="#A87820" stroke-width="2" filter="drop-shadow(0 12px 28px rgba(0,0,0,0.6))"/>
+
+    <!-- Document Heading Inside Sheet -->
+    <text x="230" y="45" text-anchor="middle" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" letter-spacing="1" fill="#1C1814">CONSTITUENT ASSEMBLY OF INDIA</text>
+    <text x="230" y="65" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#554433">DRAFTING COMMITTEE OFFICIAL FACSIMILE</text>
+    <line x1="40" y1="75" x2="420" y2="75" stroke="#A87820" stroke-width="1"/>
+
+    <!-- Simulated Manuscript Lines -->
+    <g fill="#241E17" opacity="0.85">
+      <rect x="40" y="95" width="370" height="7" rx="2"/>
+      <rect x="40" y="115" width="340" height="7" rx="2"/>
+      <rect x="40" y="135" width="380" height="7" rx="2"/>
+      <rect x="40" y="155" width="320" height="7" rx="2"/>
+      <rect x="40" y="185" width="360" height="7" rx="2"/>
+      <rect x="40" y="205" width="390" height="7" rx="2"/>
+      <rect x="40" y="225" width="330" height="7" rx="2"/>
+    </g>
+
+    <!-- Red Wax Seal Stamp on Sheet -->
+    <g transform="translate(370, 450)">
+      <circle cx="0" cy="0" r="28" fill="none" stroke="#8B2500" stroke-width="2" stroke-dasharray="4 2"/>
+      <text x="0" y="-4" text-anchor="middle" font-family="'Times New Roman', serif" font-size="7" font-weight="bold" fill="#8B2500">VERIFIED</text>
+      <text x="0" y="8" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#8B2500">HERITAGE</text>
+    </g>
+
+    <!-- Active OCR Bounding Boxes (Cyan / Gold) -->
+    <rect x="36" y="90" width="378" height="18" fill="rgba(0, 229, 255, 0.15)" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="4 2"/>
+    <text x="42" y="84" font-family="'Courier New', monospace" font-size="8.5" font-weight="bold" fill="#00E5FF">BBOX #1 • 99.8% CONF</text>
+
+    <rect x="36" y="180" width="368" height="18" fill="rgba(212, 175, 55, 0.15)" stroke="#D4AF37" stroke-width="1.5"/>
+    <text x="42" y="174" font-family="'Courier New', monospace" font-size="8.5" font-weight="bold" fill="#D4AF37">ARTICLE 17: UNTOUCHABILITY</text>
+
+    <!-- Scanning Laser Beam -->
+    <rect x="0" y="240" width="460" height="30" fill="url(#scan-beam)"/>
+    <line x1="0" y1="270" x2="460" y2="270" stroke="#00E5FF" stroke-width="2.5" filter="drop-shadow(0 0 8px #00E5FF)"/>
+  </g>
+
+  <!-- Right Side: Real-time OCR Neural Extraction Panel -->
+  <g transform="translate(540, 50)">
+    <rect x="0" y="0" width="230" height="490" rx="8" fill="#081D2E" stroke="#00E5FF" stroke-width="1.2" opacity="0.95"/>
+
+    <!-- Panel Header -->
+    <rect x="0" y="0" width="230" height="42" rx="8" fill="#0A283F"/>
+    <circle cx="20" cy="21" r="5" fill="#00E5FF"/>
+    <text x="34" y="25" font-family="'Courier New', monospace" font-size="10.5" font-weight="bold" letter-spacing="1" fill="#E0F7FA">NEURAL OCR v2.4</text>
+
+    <!-- Metrics -->
+    <g font-family="'Courier New', monospace" font-size="9" fill="#80DEEA">
+      <text x="18" y="70">RESOLUTION: 600 DPI</text>
+      <text x="18" y="88">SCRIPT: BILINGUAL</text>
+      <text x="18" y="106">CONFIDENCE: 99.4%</text>
+      <text x="18" y="124">CHARS: 1,842 EXTRACTED</text>
+    </g>
+
+    <line x1="18" y1="140" x2="212" y2="140" stroke="#0E3C5D" stroke-width="1"/>
+
+    <!-- Extracted Token Stream -->
+    <text x="18" y="165" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#D4AF37">RECOGNIZED TOKENS:</text>
+
+    <g font-family="'Courier New', monospace" font-size="8.5" fill="#FFFFFF">
+      <text x="18" y="195">&gt; Constituent</text>
+      <text x="18" y="215">&gt; Assembly</text>
+      <text x="18" y="235">&gt; Untouchability</text>
+      <text x="18" y="255">&gt; Abolished</text>
+      <text x="18" y="275">&gt; Fundamental</text>
+      <text x="18" y="295">&gt; Rights</text>
+      <text x="18" y="315">&gt; Dr. B. R. Ambedkar</text>
+      <text x="18" y="335">&gt; Drafting Comm.</text>
+    </g>
+
+    <!-- Progress Meter -->
+    <rect x="18" y="420" width="194" height="8" rx="4" fill="#0E3C5D"/>
+    <rect x="18" y="420" width="170" height="8" rx="4" fill="#00E5FF"/>
+    <text x="18" y="446" font-family="'Courier New', monospace" font-size="8" fill="#80DEEA">SYNCHRONIZING SEARCH INDEX</text>
+  </g>
+</svg>

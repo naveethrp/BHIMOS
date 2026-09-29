@@ -1,401 +1,673 @@
-/* Timeline Page Styles with Evolving Era Stages */
+/* ==========================================================================
+   TIMELINE PAGE — AMBEDKAR DIGITAL HERITAGE ARCHIVE (MATCHES timeline_reference)
+   ========================================================================== */
 
-.timeline-page-container {
-  max-width: var(--max-content-width);
-  margin: 0 auto;
-  padding: 32px 32px 48px 32px;
-  width: 100%;
+.timeline-master-page {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  max-width: var(--max-content-width, 1440px);
+  margin: 0 auto;
+  padding: 16px 36px 48px 36px;
+  width: 100%;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. HERO BANNER
+   ========================================================================== */
+.timeline-hero-stage {
+  position: relative;
+  min-height: 280px;
+  background-color: #F8F3EA;
+  border: 1px solid rgba(168, 120, 32, 0.22);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(8, 37, 54, 0.08);
   display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.timeline-header-block {
-  text-align: center;
-}
-
-.timeline-eyebrow {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--color-gold);
-  display: block;
-  margin-bottom: 6px;
-}
-
-.timeline-page-title {
-  font-size: 2.75rem;
-  color: var(--color-navy);
-  margin-bottom: 8px;
-}
-
-.timeline-page-subtitle {
-  font-size: 1.15rem;
-  color: var(--color-text-secondary);
-}
-
-/* Era Selector Bar */
-.era-selector-bar {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-  background-color: var(--color-paper-light);
-  border: 1px solid var(--color-paper-border);
-  padding: 12px;
-  border-radius: var(--border-radius-lg);
-  box-shadow: 0 4px 12px rgba(8, 37, 54, 0.04);
-}
-
-.era-tab-btn {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 14px 8px;
-  border-radius: var(--border-radius-md);
-  border: 1px solid transparent;
-  background-color: transparent;
-  color: var(--color-text-primary);
-  transition: all 0.2s ease;
-  touch-action: manipulation;
+  padding: 32px 48px;
+  box-sizing: border-box;
 }
 
-.era-tab-btn:hover {
-  background-color: rgba(168, 120, 32, 0.08);
+.timeline-atmosphere-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.era-tab-active {
-  background-color: var(--color-navy);
-  color: var(--color-white);
-  border-color: rgba(168, 120, 32, 0.4);
-  box-shadow: 0 4px 12px rgba(8, 37, 54, 0.2);
+.timeline-sky-clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  opacity: 0.24;
+  mix-blend-mode: multiply;
 }
 
-.era-icon-wrapper {
-  font-size: 1.25rem;
-  margin-bottom: 4px;
+.timeline-canvas-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.22;
 }
 
-.era-title {
-  font-size: 0.95rem;
+.timeline-env-trees {
+  position: absolute;
+  left: 20%;
+  top: 0;
+  height: 70%;
+  width: auto;
+  opacity: 0.12;
+}
+
+.timeline-env-gate {
+  position: absolute;
+  right: 15%;
+  bottom: 0;
+  height: 65%;
+  width: auto;
+  opacity: 0.14;
+}
+
+.timeline-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(248, 243, 234, 0.85) 0%, rgba(248, 243, 234, 0.95) 75%);
+}
+
+.timeline-hero-left-cutout {
+  position: absolute;
+  left: 36px;
+  bottom: 0;
+  height: 100%;
+  width: 280px;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+}
+
+.timeline-tablet-motto {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  background: #F0E8D8;
+  border: 1px solid rgba(168, 120, 32, 0.35);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: var(--font-display, serif);
+  font-size: 0.72rem;
   font-weight: 700;
-  line-height: 1.2;
+  color: #082536;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 6;
 }
 
-.era-year-range {
-  font-size: 0.78rem;
-  opacity: 0.8;
+.tablet-sig {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 0.88rem;
+  color: #8C6D1F;
   margin-top: 2px;
 }
 
-/* Dynamic Era Feature Stage */
-.era-dynamic-stage {
-  position: relative;
-  min-height: 240px;
-  background-color: var(--color-paper-light);
-  border: 1px solid var(--color-paper-border);
-  border-radius: var(--border-radius-xl);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 32px 48px;
-  box-shadow: 0 6px 20px rgba(8, 37, 54, 0.06);
-}
-
-.era-stage-background {
+.timeline-hero-portrait-img {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.era-bg-texture-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.35;
-}
-
-.era-stage-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(251, 246, 237, 0.95) 0%,
-    rgba(251, 246, 237, 0.85) 60%,
-    rgba(251, 246, 237, 0.4) 100%
-  );
-}
-
-.era-cutout-composition {
-  position: absolute;
-  right: 40px;
+  left: 60px;
   bottom: 0;
-  height: 100%;
-  width: 440px;
+  height: 94%;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(4px 8px 20px rgba(8, 37, 54, 0.32));
+  display: block;
+}
+
+.timeline-hero-right-books {
+  position: absolute;
+  right: 48px;
+  bottom: 25px;
   z-index: 2;
   pointer-events: none;
 }
 
-.era-cutout-group {
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-
-.era-cutout-standing-img {
-  position: absolute;
-  right: 80px;
-  bottom: 0;
-  height: 110%;
-  object-fit: contain;
-  filter: drop-shadow(4px 8px 16px rgba(8, 37, 54, 0.35));
-  z-index: 2;
-}
-
-.era-accents-books-img {
-  position: absolute;
-  right: 0;
-  bottom: 10px;
-  width: 130px;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
-  z-index: 3;
-}
-
-.era-backdrop-parliament-img {
-  position: absolute;
-  right: 180px;
-  bottom: 10px;
-  width: 240px;
-  opacity: 0.45;
-  z-index: 1;
-}
-
-.era-cutout-bust-img {
-  position: absolute;
-  right: 60px;
-  bottom: 0;
-  height: 110%;
-  object-fit: contain;
-  filter: drop-shadow(4px 8px 16px rgba(8, 37, 54, 0.35));
-}
-
-.era-accents-pen-img {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: 120px;
-}
-
-.era-contextual-content {
-  position: relative;
-  z-index: 3;
-  max-width: 650px;
+.books-stack-vertical {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 3px;
 }
 
-.era-badge-indicator {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--color-gold);
-  text-transform: uppercase;
-}
-
-.era-headline {
-  font-size: 2.2rem;
-  color: var(--color-navy);
-}
-
-.era-summary-text {
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: var(--color-text-secondary);
-}
-
-/* Horizontal Track */
-.timeline-horizontal-wrapper {
-  position: relative;
-  padding: 36px 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.timeline-rail-line {
-  position: absolute;
-  top: 55px;
-  left: 20px;
-  right: 20px;
-  height: 3px;
-  background-color: var(--color-gold-border);
-  z-index: 0;
-}
-
-.timeline-cards-track {
-  display: flex;
-  gap: 24px;
-  position: relative;
-  z-index: 1;
-  padding-bottom: 16px;
-}
-
-.timeline-event-card-wrapper {
-  flex: 0 0 280px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  cursor: pointer;
-  touch-action: manipulation;
-  transition: transform 0.2s ease;
-}
-
-.timeline-event-card-wrapper:hover {
-  transform: translateY(-4px);
-}
-
-.timeline-node-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.timeline-year-badge {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--color-navy);
-}
-
-.timeline-dot-pin {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: var(--color-gold);
-  border: 3px solid var(--color-paper-light);
-  box-shadow: 0 0 0 2px var(--color-gold);
-  transition: transform 0.2s ease;
-}
-
-.timeline-event-card-wrapper:hover .timeline-dot-pin {
-  transform: scale(1.3);
-  background-color: var(--color-navy);
-}
-
-.timeline-event-card {
-  background-color: var(--color-paper-light);
-  border: 1px solid var(--color-paper-border);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(8, 37, 54, 0.06);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.timeline-event-card-wrapper:hover .timeline-event-card {
-  border-color: rgba(168, 120, 32, 0.5);
-  box-shadow: 0 8px 24px rgba(8, 37, 54, 0.12);
-}
-
-.timeline-card-image-box {
-  height: 140px;
-  background-color: var(--color-navy-dark);
-  overflow: hidden;
-  position: relative;
-}
-
-.timeline-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: sepia(0.15) contrast(1.05);
-}
-
-.timeline-flagship-pill {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: var(--color-gold);
-  color: var(--color-white);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: var(--border-radius-full);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-.timeline-card-body {
-  padding: 16px 18px;
-  flex: 1;
-}
-
-.timeline-card-date {
+.book-spine {
+  font-family: var(--font-display, serif);
   font-size: 0.75rem;
   font-weight: 700;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  display: block;
-  margin-bottom: 4px;
+  letter-spacing: 0.1em;
+  padding: 4px 14px;
+  border-radius: 3px;
+  color: #FAF6EF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-.timeline-card-title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  color: var(--color-navy);
+.spine-const { background: #082536; border-left: 4px solid #B8860B; }
+.spine-law { background: #1A365D; border-left: 4px solid #D4AF37; }
+.spine-econ { background: #2A4365; border-left: 4px solid #B8860B; }
+.spine-just { background: #102A43; border-left: 4px solid #C59B27; }
+
+.timeline-hero-center-titles {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.timeline-hero-eyebrow {
+  display: block;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #A87820;
   margin-bottom: 6px;
 }
 
-.timeline-card-summary {
-  font-size: 0.85rem;
-  color: var(--color-text-secondary);
-  line-height: 1.4;
+.timeline-hero-heading {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #082536;
+  margin: 0 0 8px 0;
+  line-height: 1.1;
 }
 
-.timeline-card-footer {
-  padding: 12px 18px;
-  border-top: 1px solid var(--color-paper-border);
+.timeline-hero-description {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.95rem;
+  color: #4A5568;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   2. ERA SELECTOR PILL BAR (6 ERAS)
+   ========================================================================== */
+.timeline-era-pill-bar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(168, 120, 32, 0.25);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 14px rgba(8, 37, 54, 0.05);
+}
+
+.era-pill-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: rgba(251, 246, 237, 0.4);
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
 }
 
-.timeline-expand-icon {
-  width: 24px;
-  height: 24px;
+.era-pill-btn:hover {
+  background-color: #F8F5EE;
+}
+
+.era-pill-btn.era-pill-active {
+  background-color: #082536;
+  border-color: #082536;
+  box-shadow: 0 4px 12px rgba(8, 37, 54, 0.2);
+}
+
+.era-pill-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #082536;
+  border: 1px solid rgba(168, 120, 32, 0.45);
+}
+
+.era-pill-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.era-pill-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.era-pill-years {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #A87820;
+}
+
+.era-pill-btn.era-pill-active .era-pill-years {
+  color: #D4AF37;
+}
+
+.era-pill-name {
+  font-family: var(--font-display, serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #082536;
+  line-height: 1.2;
+}
+
+.era-pill-btn.era-pill-active .era-pill-name {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   3. ACTIVE ERA HERO BANNER CARD
+   ========================================================================== */
+.active-era-banner-card {
+  display: grid;
+  grid-template-columns: 1fr 200px 320px;
+  align-items: center;
+  gap: 24px;
+  background-color: #FBF8F2;
+  border: 1px solid rgba(168, 120, 32, 0.28);
+  border-radius: 12px;
+  padding: 24px 32px;
+  box-shadow: 0 6px 20px rgba(8, 37, 54, 0.06);
+}
+
+.era-banner-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.era-banner-years {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #A87820;
+}
+
+.era-banner-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #082536;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.era-banner-summary {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #4A5568;
+  margin: 4px 0 0 0;
+}
+
+.era-banner-center-thumb {
+  width: 140px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 4px 14px rgba(8, 37, 54, 0.15);
+  background: #082536;
+  border: 1px solid rgba(168, 120, 32, 0.4);
+}
+
+.era-banner-center-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.era-banner-right-quote {
+  border-left: 2px solid #B8860B;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.era-quote-text {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #082536;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.era-quote-author {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #A87820;
+  font-style: normal;
+}
+
+/* ==========================================================================
+   4. TIMELINE RAIL & EVENT CARDS
+   ========================================================================== */
+.timeline-rail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-controls-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.rail-nav-btn {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: var(--color-gold);
-  color: var(--color-white);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(168, 120, 32, 0.35);
+  color: #082536;
+  font-size: 1.2rem;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  flex-shrink: 0;
 }
 
-.timeline-read-label {
+.rail-nav-btn:hover {
+  background-color: #082536;
+  border-color: #082536;
+  color: #FFFFFF;
+}
+
+.timeline-milestones-track {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.milestones-line-gold {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background-color: #D4AF37;
+  z-index: 1;
+}
+
+.milestones-nodes-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.milestone-node-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.milestone-year-label {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #082536;
+}
+
+.milestone-circle-node {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #B8860B;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #B8860B;
+}
+
+/* Event Cards Scroll Track */
+.timeline-cards-scroll-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.timeline-event-card-refined {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(168, 120, 32, 0.22);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 14px rgba(8, 37, 54, 0.05);
+}
+
+.timeline-event-card-refined:hover {
+  transform: translateY(-4px);
+  border-color: #B8860B;
+  box-shadow: 0 10px 24px rgba(8, 37, 54, 0.12);
+}
+
+.event-card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background: #082536;
+  overflow: hidden;
+  border-bottom: 1.5px solid rgba(168, 120, 32, 0.3);
+}
+
+.event-card-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.timeline-event-card-refined:hover .event-card-thumb-wrap img {
+  transform: scale(1.04);
+}
+
+.event-card-icon-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B8860B;
+}
+
+.event-card-body-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.event-card-meta-tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.event-date-text {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #082536;
+}
+
+.event-cat-tag {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.event-card-title {
+  font-family: var(--font-display, serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #082536;
+  line-height: 1.3;
+  margin: 0 0 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-card-summary {
+  font-family: var(--font-sans, sans-serif);
   font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--color-navy);
+  line-height: 1.45;
+  color: #4A5568;
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-@media (max-width: 1024px) {
-  .era-selector-bar {
+.event-card-source-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.75rem;
+  color: #718096;
+  margin-top: auto;
+  margin-bottom: 12px;
+}
+
+.event-card-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(168, 120, 32, 0.12);
+}
+
+.circle-arrow-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #F8F5EE;
+  border: 1px solid rgba(168, 120, 32, 0.35);
+  color: #A87820;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.view-source-link {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #A87820;
+}
+
+.timeline-event-card-refined:hover .view-source-link {
+  color: #082536;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .timeline-era-pill-bar {
     grid-template-columns: repeat(3, 1fr);
   }
-  .era-cutout-composition {
-    display: none;
+  .active-era-banner-card {
+    grid-template-columns: 1fr 200px;
+  }
+  .era-banner-right-quote {
+    grid-column: span 2;
+    border-left: none;
+    border-top: 1px solid rgba(168, 120, 32, 0.2);
+    padding-top: 12px;
+    padding-left: 0;
+  }
+  .timeline-cards-scroll-container {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 600px) {
-  .era-selector-bar {
+@media (max-width: 860px) {
+  .timeline-master-page {
+    padding: 12px 18px 36px 18px;
+  }
+  .timeline-hero-left-cutout,
+  .timeline-hero-right-books {
+    display: none;
+  }
+  .timeline-era-pill-bar {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .active-era-banner-card {
+    grid-template-columns: 1fr;
+  }
+  .era-banner-center-thumb {
+    display: none;
+  }
+  .timeline-cards-scroll-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .timeline-era-pill-bar {
+    grid-template-columns: 1fr;
+  }
+  .timeline-cards-scroll-container {
+    grid-template-columns: 1fr;
   }
 }

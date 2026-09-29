@@ -7,6 +7,11 @@
   padding: 0;
 }
 
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -31,22 +36,52 @@ html, body {
     radial-gradient(circle at 90% 80%, rgba(233, 220, 200, 0.4) 0%, transparent 70%);
 }
 
-/* Typography Rules */
+/* Typography Scale */
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
+  line-height: 1.15;
 }
 
-p, span, div, a, button, input {
+h1 { font-size: clamp(2rem, 4vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.85rem); }
+h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+
+p, span, div, a, button, input, label, textarea {
   font-family: var(--font-sans);
 }
 
-/* Accessible Interactive Focus */
+/* Modal Header Contrast Enforcement (Never dark-on-navy) */
+.record-modal-header h3,
+.source-modal-header h3,
+.citation-modal-header h3,
+.pdf-modal-header h3,
+.record-modal-title,
+.source-modal-title,
+.citation-modal-title,
+.pdf-modal-title {
+  color: #FFFFFF !important;
+}
+
+/* Accessible Interactive Focus - Museum Standard */
 :focus-visible {
-  outline: 3px solid var(--color-gold);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Ensure buttons and interactive elements have visible focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* Kiosk Buttons Base */
@@ -59,12 +94,17 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s ease-in-out;
+  transition: all var(--transition-base) var(--easing-standard);
   touch-action: manipulation;
 }
 
 button:active {
   transform: scale(0.98);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 /* Touch Targets Enforcement */
@@ -119,4 +159,81 @@ button:active {
   width: 24px;
   height: 24px;
   opacity: 0.6;
+}
+
+/* Scrollbar Styling - Subtle Archival */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 120, 32, 0.3);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 120, 32, 0.5);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Selection Styling */
+::selection {
+  background-color: var(--color-gold-soft);
+  color: var(--color-navy);
+}
+
+/* Image Loading States */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .global-header,
+  .kiosk-top-bar,
+  .kiosk-tap-banner,
+  button,
+  .btn-archival-primary,
+  .btn-archival-secondary,
+  .archive-record-modal-backdrop,
+  .event-source-modal-backdrop,
+  .ask-citation-modal-backdrop,
+  .ocr-pdf-modal-backdrop,
+  .kiosk-inactivity-modal {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
 }

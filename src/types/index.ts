@@ -2,11 +2,11 @@
  * Core Type Definitions for Ambedkar Digital Heritage Archive
  */
 
-export type PageId = 'home' | 'archive' | 'timeline' | 'ask' | 'ocr' | 'about' | 'event-detail';
+export type PageId = 'kiosk' | 'home' | 'archive' | 'timeline' | 'ask' | 'ocr' | 'rc' | 'about' | 'event-detail';
 
 export type Language = 'en' | 'hi';
 
-export type ArchiveCategory = 'videos' | 'audio' | 'letters' | 'debates' | 'publications';
+export type ArchiveCategory = 'debates' | 'publications' | 'audio' | 'letters' | 'photos' | 'legal' | 'press' | 'videos';
 
 export interface ArchiveItem {
   id: string;
@@ -21,6 +21,14 @@ export interface ArchiveItem {
   itemCountBadge?: number;
   tags?: string[];
   sourceReference?: string;
+  transcript?: string;
+  institution?: string;
+  sourceUrl?: string;
+  volumeRef?: string;
+  isLocalArchivalData?: boolean;
+  shelfMark?: string;
+  physicalLocation?: string;
+  externalAuthority?: string;
 }
 
 export interface TimelineEra {
@@ -64,6 +72,11 @@ export interface CitationSource {
   sourceType: string;
   location: string;
   originalDocumentUrl?: string;
+  isExternal?: boolean;
+  year?: number | string;
+  collection?: string;
+  page?: string | number;
+  snippet?: string;
 }
 
 export interface AskMessage {

@@ -1,3 +1,5 @@
+/* Button System - Archival Museum Quality */
+
 .btn-archival-primary {
   background-color: var(--color-gold);
   color: var(--color-white);
@@ -9,12 +11,23 @@
   padding: 0 24px;
   gap: 12px;
   box-shadow: 0 2px 6px rgba(168, 120, 32, 0.25);
-  transition: all 0.2s ease;
+  transition: all var(--transition-base) var(--easing-standard);
 }
 
-.btn-archival-primary:hover {
+.btn-archival-primary:hover:not(:disabled) {
   background-color: var(--color-gold-hover);
   box-shadow: 0 4px 12px rgba(168, 120, 32, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-archival-primary:active:not(:disabled) {
+  transform: scale(0.98);
+  box-shadow: 0 1px 4px rgba(168, 120, 32, 0.25);
+}
+
+.btn-archival-primary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .btn-archival-secondary {
@@ -26,12 +39,49 @@
   font-size: 1rem;
   padding: 0 24px;
   gap: 10px;
-  transition: all 0.2s ease;
+  transition: all var(--transition-base) var(--easing-standard);
 }
 
-.btn-archival-secondary:hover {
+.btn-archival-secondary:hover:not(:disabled) {
   background-color: var(--color-paper-aged);
   border-color: rgba(90, 68, 38, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-archival-secondary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-archival-secondary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.btn-archival-ghost {
+  background-color: transparent;
+  color: var(--color-navy);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0 20px;
+  gap: 10px;
+  transition: all var(--transition-base) var(--easing-standard);
+}
+
+.btn-archival-ghost:hover:not(:disabled) {
+  background-color: rgba(8, 37, 54, 0.06);
+  border-color: rgba(168, 120, 32, 0.3);
+  color: var(--color-gold);
+}
+
+.btn-archival-ghost:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-archival-ghost:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .btn-standard {
@@ -48,9 +98,48 @@
 .btn-arrow {
   font-size: 1.2rem;
   line-height: 1;
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-base) var(--easing-standard);
 }
 
 .btn-archival-primary:hover .btn-arrow {
   transform: translateX(4px);
+}
+
+/* Loading Spinner */
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--color-white);
+  border-radius: 50%;
+  animation: btn-spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+.btn-archival-secondary .btn-spinner,
+.btn-archival-ghost .btn-spinner {
+  border-color: rgba(8, 37, 54, 0.2);
+  border-top-color: var(--color-navy);
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Disabled State */
+.btn-archival-primary:disabled,
+.btn-archival-secondary:disabled,
+.btn-archival-ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Icon Prefix */
+.btn-icon-prefix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1050" width="800" height="1050">
+  <defs>
+    <radialGradient id="dhamma-vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#4A3B22" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="dhamma-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#8C6826"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1050" fill="#F8F3E6"/>
+  <rect width="800" height="1050" fill="url(#dhamma-vignette)"/>
+
+  <!-- Ornate Border Framing with Asoka Chakra Pattern -->
+  <rect x="35" y="35" width="730" height="980" fill="none" stroke="#2B2114" stroke-width="2.5"/>
+  <rect x="42" y="42" width="716" height="966" fill="none" stroke="#8C6826" stroke-width="1.2"/>
+
+  <!-- Asoka Chakra Insignia at Top Center -->
+  <circle cx="400" cy="140" r="42" fill="none" stroke="#103659" stroke-width="2.5"/>
+  <circle cx="400" cy="140" r="10" fill="#103659"/>
+  <!-- 24 Spokes -->
+  <g stroke="#103659" stroke-width="1.5">
+    <line x1="400" y1="98" x2="400" y2="182"/>
+    <line x1="358" y1="140" x2="442" y2="140"/>
+    <line x1="370" y1="110" x2="430" y2="170"/>
+    <line x1="430" y1="110" x2="370" y2="170"/>
+  </g>
+
+  <!-- Title Heading -->
+  <text x="400" y="235" text-anchor="middle" font-family="'Times New Roman', serif" font-size="32" font-weight="bold" letter-spacing="3" fill="#1A1815">THE BUDDHA AND HIS DHAMMA</text>
+  <text x="400" y="275" text-anchor="middle" font-family="'Times New Roman', serif" font-size="16" font-style="italic" fill="#554433">Magnum Opus on Buddhist Philosophy, Rationality &amp; Morality</text>
+
+  <line x1="220" y1="305" x2="580" y2="305" stroke="#8C6826" stroke-width="2"/>
+
+  <text x="400" y="350" text-anchor="middle" font-family="'Times New Roman', serif" font-size="18" fill="#1A1815">BY</text>
+  <text x="400" y="390" text-anchor="middle" font-family="'Times New Roman', serif" font-size="24" font-weight="bold" fill="#0A2239">DR. B. R. AMBEDKAR</text>
+  <text x="400" y="420" text-anchor="middle" font-family="'Times New Roman', serif" font-size="13" fill="#554433">Completed in 1956 • Siddharth College Publications</text>
+
+  <!-- Central Parchment Excerpt Box -->
+  <rect x="85" y="460" width="630" height="340" rx="6" fill="#F2E8D2" stroke="#8C6826" stroke-width="1.5"/>
+
+  <text x="400" y="505" text-anchor="middle" font-family="'Times New Roman', serif" font-size="16" font-weight="bold" fill="#0A2239">BOOK I: WHAT IS DHAMMA?</text>
+
+  <g font-family="'Times New Roman', serif" font-size="13.5" fill="#1C1814" letter-spacing="0.2">
+    <text x="120" y="550">“Morality is Dhamma and Dhamma is Morality. In Dhamma morality takes</text>
+    <text x="120" y="575">the place of God. Without morality man cannot maintain society.</text>
+    <text x="120" y="610">Dhamma is not merely religion. It is righteous social relations,</text>
+    <text x="120" y="635">grounded in Prajna (understanding), Karuna (compassion), and</text>
+    <text x="120" y="660">Samata (equality).</text>
+    <text x="120" y="695">To worship intellect without compassion is dangerous; to cultivate</text>
+    <text x="120" y="720">compassion without reason is blind.”</text>
+  </g>
+
+  <!-- Archival Authentication Stamp -->
+  <g transform="translate(400, 880)">
+    <ellipse cx="0" cy="0" rx="140" ry="32" fill="none" stroke="#8B2500" stroke-width="2" stroke-dasharray="4 2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#8B2500">DEEKSHABHOOMI HISTORIC ARCHIVE</text>
+    <text x="0" y="8" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8B2500">OCTOBER 1956 • DHAMMACHARI DEDICATION</text>
+    <text x="0" y="20" text-anchor="middle" font-family="'Times New Roman', serif" font-size="8" font-style="italic" fill="#8B2500">Nagpur Historic Conversion Facsimile</text>
+  </g>
+</svg>

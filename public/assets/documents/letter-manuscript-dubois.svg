@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1050" width="800" height="1050">
+  <defs>
+    <radialGradient id="parchment-vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#7A6240" stop-opacity="0.3"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Parchment Sheet Base -->
+  <rect width="800" height="1050" fill="#F7F1E3"/>
+  <rect width="800" height="1050" fill="url(#parchment-vignette)"/>
+
+  <!-- Border & Ruling -->
+  <rect x="25" y="25" width="750" height="1000" fill="none" stroke="#D1C3A5" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.7"/>
+  <rect x="35" y="35" width="730" height="980" fill="none" stroke="#E2D7C0" stroke-width="1" opacity="0.8"/>
+
+  <!-- Letterhead Header -->
+  <text x="400" y="85" text-anchor="middle" font-family="'Times New Roman', serif" font-size="16" font-weight="bold" letter-spacing="2" fill="#2C241B">DR. B. R. AMBEDKAR, M.A., Ph.D., D.Sc., Bar-at-Law</text>
+  <text x="400" y="105" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" fill="#554433">“Rajgriha”, Hindu Colony, Dadar, Bombay 14</text>
+  <line x1="120" y1="120" x2="680" y2="120" stroke="#8C6826" stroke-width="1.5"/>
+
+  <!-- Date & Addressee -->
+  <text x="650" y="155" text-anchor="end" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#221C16">July 31, 1946</text>
+  <text x="90" y="190" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" fill="#1A1A1A">To,</text>
+  <text x="90" y="210" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" fill="#1A1A1A">Dr. W. E. B. Du Bois,</text>
+  <text x="90" y="230" font-family="'Times New Roman', serif" font-size="13" fill="#333333">Director of Special Research, N.A.A.C.P.,</text>
+  <text x="90" y="250" font-family="'Times New Roman', serif" font-size="13" fill="#333333">New York City, U.S.A.</text>
+
+  <!-- Salutation -->
+  <text x="90" y="295" font-family="'Times New Roman', serif" font-size="14" fill="#1A1A1A">Dear Dr. Du Bois,</text>
+
+  <!-- Letter Body (Typewriter style with authentic letter text) -->
+  <g font-family="'Courier New', monospace" font-size="12" fill="#1C1814" letter-spacing="0.2">
+    <text x="90" y="335">Although I have not met you personally, I have been a great student</text>
+    <text x="90" y="355">of your work and know of your profound leadership on behalf of the</text>
+    <text x="90" y="375">Negro people in America.</text>
+
+    <text x="90" y="415">There is so much in common between the position of the Untouchables in</text>
+    <text x="90" y="435">India and the position of the Negroes in America that the study of the</text>
+    <text x="90" y="455">one is bound to assist the study of the other. The Dalits of India</text>
+    <text x="90" y="475">number over 60 millions and their disabilities are civic, economic,</text>
+    <text x="90" y="495">and religious.</text>
+
+    <text x="90" y="535">I was very much interested in your petition submitted to the United</text>
+    <text x="90" y="555">Nations Commission on Human Rights. We are also preparing a similar</text>
+    <text x="90" y="575">representation to place before the world forum the condition of the</text>
+    <text x="90" y="595">Depressed Classes of India, seeking international safeguards for human</text>
+    <text x="90" y="615">rights that no majority may abridge.</text>
+
+    <text x="90" y="655">I should be extremely grateful to receive copies of your memorandum</text>
+    <text x="90" y="675">and would be happy to exchange publications and papers with you.</text>
+  </g>
+
+  <!-- Signoff & Signature -->
+  <text x="520" y="730" font-family="'Times New Roman', serif" font-size="14" fill="#1A1A1A">Yours sincerely,</text>
+  <text x="520" y="775" font-family="'Brush Script MT', cursive" font-size="34" fill="#182C40">B. R. Ambedkar</text>
+  <text x="520" y="805" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#333333">B. R. Ambedkar</text>
+
+  <!-- Archival Stamp & Provenance Seal -->
+  <g transform="translate(160, 880)">
+    <rect x="-80" y="-30" width="160" height="60" rx="3" fill="none" stroke="#8B2500" stroke-width="2" stroke-dasharray="4 2" opacity="0.85"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#8B2500">ARCHIVES OF INDIA</text>
+    <text x="0" y="8" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#8B2500">REF: AMB-DUBOIS-1946</text>
+    <text x="0" y="20" text-anchor="middle" font-family="'Times New Roman', serif" font-size="7.5" font-weight="bold" fill="#8B2500">VERIFIED FACSIMILE</text>
+  </g>
+
+  <!-- NAACP Received Stamp -->
+  <g transform="translate(640, 880)">
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#1A3B60" stroke-width="1.8" opacity="0.8"/>
+    <text x="0" y="-12" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#1A3B60">N.A.A.C.P. RESEARCH</text>
+    <text x="0" y="4" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#1A3B60">RECEIVED</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#1A3B60">AUG 14 1946</text>
+  </g>
+</svg>

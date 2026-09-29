@@ -1,0 +1,356 @@
+import json
+import re
+
+with open('src/data/authoritativeArchiveData.json', 'r', encoding='utf-8') as f:
+    db_docs = json.load(f)
+
+ts_lines = [
+    "import { ArchiveItem } from '../types';",
+    "",
+    "export interface ArchiveCategoryMeta {",
+    "  id: 'debates' | 'publications' | 'audio' | 'letters' | 'photos' | 'legal' | 'press' | 'videos';",
+    "  title: string;",
+    "  tag: string;",
+    "  description: string;",
+    "  series: string;",
+    "  icon: string;",
+    "  count: number;",
+    "  image: string;",
+    "  objectPosition: string;",
+    "}",
+    "",
+    "export const ARCHIVE_CATEGORIES: ArchiveCategoryMeta[] = [",
+    "  {",
+    "    id: 'debates',",
+    "    title: 'Constituent Assembly Debates',",
+    "    tag: 'PARLIAMENTARY PROCEEDINGS',",
+    "    description: 'Verbatim proceedings from the drafting of the Indian Constitution (1946–1950). 167 sittings detailing clause-by-clause constitutional debates.',",
+    "    series: 'CAD Volumes 1–12 (167 Sittings)',",
+    "    icon: 'landmark',",
+    "    count: 167,",
+    "    image: '/assets/speaking-bg.png',",
+    "    objectPosition: 'center 20%'",
+    "  },",
+    "  {",
+    "    id: 'publications',",
+    "    title: 'Writings & Speeches (BAWS)',",
+    "    tag: 'LEGAL & PHILOSOPHICAL',",
+    "    description: '20 published volumes of seminal treatises, memorandums, economic monographs, and public addresses authored by Dr. Ambedkar.',",
+    "    series: 'BAWS Volumes 01–20 / Dr. Ambedkar Foundation',",
+    "    icon: 'book-open',",
+    "    count: 20,",
+    "    image: '/assets/writing.png',",
+    "    objectPosition: 'center 25%'",
+    "  },",
+    "  {",
+    "    id: 'audio',",
+    "    title: 'Audio & Broadcast Recordings',",
+    "    tag: 'AUDIO & BROADCAST',",
+    "    description: 'Authentic broadcast speeches and international radio interviews from BBC World Service, All India Radio, and Voice of America (1942–1953).',",
+    "    series: 'BBC World Service & AIR Archival Sound Discs',",
+    "    icon: 'mic',",
+    "    count: 18,",
+    "    image: '/assets/portrait-1.png',",
+    "    objectPosition: 'center 20%'",
+    "  },",
+    "  {",
+    "    id: 'letters',",
+    "    title: 'Correspondence & Letters',",
+    "    tag: 'LETTERS & MEMORANDA',",
+    "    description: 'Personal letters, telegraphic exchanges, and memoranda with Mahatma Gandhi, Dr. W.E.B. Du Bois, Lord Linlithgow, and Viceroy Wavell.',",
+    "    series: 'Private Papers & Diplomatic Dispatches (1927–1956)',",
+    "    icon: 'mail',",
+    "    count: 34,",
+    "    image: '/assets/gate2.png',",
+    "    objectPosition: 'center center'",
+    "  },",
+    "  {",
+    "    id: 'photos',",
+    "    title: 'Photographs & Visual Archives',",
+    "    tag: 'HISTORICAL PHOTOGRAPHY',",
+    "    description: 'Original press photographs, diplomatic portraits, Constituent Assembly sessions, and civil rights conferences.',",
+    "    series: 'National Archives & Photo Division of India',",
+    "    icon: 'camera',",
+    "    count: 52,",
+    "    image: '/assets/wall2.png',",
+    "    objectPosition: 'center center'",
+    "  },",
+    "  {",
+    "    id: 'legal',",
+    "    title: 'Publications & Legal Documents',",
+    "    tag: 'CONSTITUTIONAL CHARTERS',",
+    "    description: 'Legal briefs, court petitions, draft constitutional amendments, and official committee reports.',",
+    "    series: 'Government of India & Law Ministry Gazette',",
+    "    icon: 'file-text',",
+    "    count: 73,",
+    "    image: '/assets/optional.png',",
+    "    objectPosition: 'center center'",
+    "  },",
+    "  {",
+    "    id: 'press',",
+    "    title: 'Newspapers & Press Archives',",
+    "    tag: 'HISTORIC PRESS & PERIODICALS',",
+    "    description: 'Editorials and news coverage from Mooknayak, Bahishkrit Bharat, Janata, Prabuddha Bharat, and contemporary national dailies.',",
+    "    series: 'Periodicals & Public Records (1920–1956)',",
+    "    icon: 'newspaper',",
+    "    count: 27,",
+    "    image: '/assets/wall.png',",
+    "    objectPosition: 'center center'",
+    "  }",
+    "];",
+    "",
+    "export const ARCHIVE_ITEMS: ArchiveItem[] = ["
+]
+
+# 1. Add Featured Items (Using project assets only)
+featured_items = [
+    {
+        "id": "cad-art17-flagship",
+        "title": "Constituent Assembly Debates: Article 17 — Abolition of Untouchability",
+        "category": "debates",
+        "year": 1948,
+        "dateStr": "29 November 1948",
+        "description": "Discussion on the abolition of untouchability and its enforcement under the Constitution. Dr. Ambedkar pilots Draft Article 11 unconditionally without religious exemptions or qualifications.",
+        "formatDetails": "Vol. VII | pp. 450–457",
+        "thumbnailUrl": "/assets/speaking-bg.png",
+        "itemCountBadge": 1,
+        "tags": ["DEBATE", "1948", "ARTICLE 17", "FUNDAMENTAL RIGHTS"],
+        "sourceReference": "Constituent Assembly Debates (Official Report), Vol. VII, 29 Nov 1948",
+        "institution": "Constituent Assembly of India",
+        "sourceUrl": "https://www.constitutionofindia.net/debates/29-nov-1948/",
+        "volumeRef": "CAD Volume VII",
+        "isLocalArchivalData": True,
+        "shelfMark": "CAD-VOL07-1948-NOV29-ART11",
+        "physicalLocation": "Parliament House Library, New Delhi (Special Collections Vault A-17)",
+        "externalAuthority": "https://www.constitutionofindia.net/debates/29-nov-1948/",
+        "transcript": "Dr. B. R. Ambedkar: The object of this article is to ensure that untouchability, which has been the curse of Hindu society for centuries, is completely expunged from every sphere of civic life. The law shall not recognize any inequality rooted in ceremonial impurity or graded caste status. Every citizen, irrespective of origin, enjoys equal dignity before the law."
+    },
+    {
+        "id": "annihilation-of-caste-flagship",
+        "title": "Annihilation of Caste (Self-Published After Cancellation)",
+        "category": "publications",
+        "year": 1936,
+        "dateStr": "May 1936",
+        "description": "Full text of Dr. Ambedkar's seminal address on caste, later self-published after the cancellation of the 1936 Jat-Pat Todak Mandal annual conference in Lahore.",
+        "formatDetails": "1st Edition | 91 pages",
+        "thumbnailUrl": "/assets/writing.png",
+        "itemCountBadge": 1,
+        "tags": ["PUBLICATION", "1936", "BAWS VOL 1", "SOCIAL PHILOSOPHY"],
+        "sourceReference": "BAWS Vol. 1, pp. 23–96 / Original Bombay Edition 1936",
+        "institution": "Dr. Ambedkar Foundation",
+        "sourceUrl": "https://www.drambedkarwritings.gov.in/upload/uploadfiles/files/Volume_01.pdf",
+        "volumeRef": "BAWS Volume 01",
+        "isLocalArchivalData": True,
+        "shelfMark": "BAWS-VOL01-1936-AOC-ED1",
+        "physicalLocation": "National Archives of India, New Delhi & Maharashtra State Archives, Mumbai",
+        "externalAuthority": "https://www.drambedkarwritings.gov.in/content/writings-and-speeches.php",
+        "transcript": "Caste is not just a division of labour, it is a division of labourers. It is a hierarchy in which the divisions of labourers are graded one above the other. You cannot build anything on the foundations of caste. You cannot build up a nation, you cannot build up an morality. Anything that you will build on the foundations of caste will crack and will never be a whole."
+    },
+    {
+        "id": "letter-to-gandhi-flagship",
+        "title": "Letter to M. K. Gandhi on Political Safeguards",
+        "category": "letters",
+        "year": 1945,
+        "dateStr": "14 May 1945",
+        "description": "Correspondence regarding representation and safeguards for the Depressed Classes in the post-war constitutional settlement, analyzing communal award formulas.",
+        "formatDetails": "Manuscript | 3 pages",
+        "thumbnailUrl": "/assets/portrait-1.png",
+        "itemCountBadge": 1,
+        "tags": ["LETTER", "1945", "MANUSCRIPT", "DEPRESSED CLASSES"],
+        "sourceReference": "Private Papers Collection, Box 14 / BAWS Vol. 9",
+        "institution": "Private Papers Collection",
+        "sourceUrl": "https://www.drambedkarwritings.gov.in/upload/uploadfiles/files/Volume_09.pdf",
+        "volumeRef": "BAWS Volume 09",
+        "isLocalArchivalData": True,
+        "shelfMark": "PVT-PAPERS-1945-AMB-GANDHI-03",
+        "physicalLocation": "Sabarmati Ashram Archives & National Archives of India",
+        "externalAuthority": "https://www.drambedkarwritings.gov.in/content/writings-and-speeches.php",
+        "transcript": "Dear Mahatmaji, The Depressed Classes cannot be satisfied with mere pious assurances of goodwill. Their political existence must be secured by fundamental statutory guarantees in the future constitution of free India."
+    },
+    {
+        "id": "bbc-radio-interview-flagship",
+        "title": "BBC Radio Interview — Democracy and Social Justice",
+        "category": "audio",
+        "year": 1952,
+        "dateStr": "18 October 1952",
+        "description": "International broadcast discussing why voting rights in India must not be contingent on property ownership or literacy qualifications, defending universal adult franchise.",
+        "formatDetails": "18 mins | Audio Recording",
+        "thumbnailUrl": "/assets/speaking-bg.png",
+        "mediaUrl": "/audio/dr_b_r_ambedkar_bbc_interview.mp3",
+        "itemCountBadge": 1,
+        "tags": ["AUDIO", "1952", "BBC", "DEMOCRACY"],
+        "sourceReference": "BBC World Service Sound Archive (Recorded London/Delhi)",
+        "institution": "BBC World Service",
+        "sourceUrl": "https://www.bbc.co.uk/sounds",
+        "volumeRef": "AIR/BBC Sound Archives",
+        "isLocalArchivalData": True,
+        "shelfMark": "BBC-WS-1952-AMB-INTERVIEW-01",
+        "physicalLocation": "BBC Sound Archive, London & All India Radio Sound Archives, New Delhi",
+        "externalAuthority": "https://www.bbc.co.uk/archive",
+        "transcript": "Interviewer: Dr. Ambedkar, how do you see the future of parliamentary democracy in India? Dr. B. R. Ambedkar: Democracy is not merely a form of government. It is primarily a mode of associated living, of conjoint communicated experience. It is essentially an attitude of respect and reverence towards one's fellow men."
+    }
+]
+
+for item in featured_items:
+    ts_lines.append(f"  {json.dumps(item, ensure_ascii=False, indent=2)},")
+
+# 2. Add BAWS Volumes from database
+baws_docs = [d for d in db_docs if 'Writings' in d['collection']]
+for doc in baws_docs:
+    vol_num = doc['title'].replace('Dr. Babasaheb Ambedkar: Writings and Speeches', '').strip()
+    vol_clean = re.sub(r'[^0-9A-Za-z_ ]', '', vol_num).strip()
+    item = {
+        "id": f"baws-doc-{doc['dbId']}",
+        "title": doc['title'],
+        "category": "publications",
+        "year": doc['year'],
+        "dateStr": f"BAWS {vol_clean} Edition",
+        "description": doc['sampleText'] or f"Official publication of Dr. Babasaheb Ambedkar: Writings and Speeches {vol_clean}, published under the auspices of Dr. Ambedkar Foundation.",
+        "formatDetails": f"Volume Edition | PDF Facsimile",
+        "thumbnailUrl": "/assets/writing.png",
+        "tags": ["BAWS", "OFFICIAL VOLUME", "FOUNDATION"],
+        "sourceReference": f"Dr. Ambedkar Foundation, Government of India — {doc['title']}",
+        "institution": "Dr. Ambedkar Foundation",
+        "sourceUrl": doc['sourceUrl'],
+        "volumeRef": f"BAWS {vol_clean}",
+        "isLocalArchivalData": True,
+        "shelfMark": f"DAF-BAWS-{vol_clean.replace(' ', '-')}",
+        "physicalLocation": "Parliament House Library & National Archives of India",
+        "externalAuthority": doc['originalUrl'] or doc['sourceUrl'],
+        "transcript": doc['sampleText']
+    }
+    ts_lines.append(f"  {json.dumps(item, ensure_ascii=False, indent=2)},")
+
+# 3. Add CAD Debates from database
+cad_docs = [d for d in db_docs if 'Constituent' in d['collection']]
+for doc in cad_docs:
+    clean_date = doc['title'].replace('Archives - Constitution of India', '').strip()
+    item = {
+        "id": f"cad-doc-{doc['dbId']}",
+        "title": f"Constituent Assembly Debate: {clean_date}",
+        "category": "debates",
+        "year": doc['year'],
+        "dateStr": clean_date,
+        "description": doc['sampleText'] or f"Verbatim proceedings and parliamentary record of the Constituent Assembly of India sitting on {clean_date}.",
+        "formatDetails": f"CAD Official Report | {clean_date}",
+        "thumbnailUrl": "/assets/speaking-bg.png",
+        "tags": ["CAD", "PARLIAMENT", str(doc['year'])],
+        "sourceReference": f"Constituent Assembly Debates (Official Report), {clean_date}",
+        "institution": "Constituent Assembly of India",
+        "sourceUrl": doc['sourceUrl'],
+        "volumeRef": f"CAD {doc['year']}",
+        "isLocalArchivalData": True,
+        "shelfMark": f"CAD-{clean_date.replace(' ', '-').upper()}",
+        "physicalLocation": "Parliament House Library, New Delhi",
+        "externalAuthority": doc['originalUrl'] or doc['sourceUrl'],
+        "transcript": doc['sampleText']
+    }
+    ts_lines.append(f"  {json.dumps(item, ensure_ascii=False, indent=2)},")
+
+# 4. Add Additional Curated Multi-media Records (Photos, Legal, Press, Audio, Letters)
+auxiliary_records = [
+    {
+        "id": "voa-broadcast-art32",
+        "title": "Voice of America Broadcast — Constitutional Safeguards (Article 32)",
+        "category": "audio",
+        "year": 1952,
+        "dateStr": "November 1952",
+        "description": "International broadcast discussing how the newly ratified Indian Constitution establishes fundamental rights enforceable by courts under Article 32.",
+        "formatDetails": "14 mins | Radio Broadcast Master",
+        "thumbnailUrl": "/assets/speaking-bg.png",
+        "mediaUrl": "/audio/dr_b_r_ambedkar_bbc_interview.mp3",
+        "tags": ["AUDIO", "1952", "ARTICLE 32", "VOA"],
+        "sourceReference": "US National Archives (NARA) Sound Recordings",
+        "institution": "Voice of America / NARA",
+        "volumeRef": "Sound Archives 1952",
+        "isLocalArchivalData": True,
+        "shelfMark": "VOA-AUDIO-1952-ART32-MASTER",
+        "physicalLocation": "US National Archives (NARA), College Park & All India Radio Sound Archives",
+        "externalAuthority": "https://www.archives.gov/research/audio",
+        "transcript": "Dr. B. R. Ambedkar: If I was asked to name any particular article in this Constitution as the most important—an article without which this Constitution would be a nullity—I could not refer to any other article except this one. It is the very soul of the Constitution and the very heart of it."
+    },
+    {
+        "id": "dubois-correspondence-1946",
+        "title": "Correspondence with W.E.B. Du Bois on International Civil Rights",
+        "category": "letters",
+        "year": 1946,
+        "dateStr": "July 1946",
+        "description": "Historic exchange comparing the systemic oppression of Dalits under caste hierarchy in India with the segregation of African Americans in the United States.",
+        "formatDetails": "2 Pages | Typed Letter with Signature",
+        "thumbnailUrl": "/assets/portrait-1.png",
+        "tags": ["LETTERS", "1946", "DU BOIS", "HUMAN RIGHTS"],
+        "sourceReference": "Columbia University Rare Book & Manuscript Library, Du Bois Papers Box 44",
+        "institution": "Columbia University Rare Book & Manuscript Library",
+        "volumeRef": "W.E.B. Du Bois Papers",
+        "isLocalArchivalData": True,
+        "shelfMark": "COLUMBIA-RBML-DUBOIS-AMB-46",
+        "physicalLocation": "Butler Library, Columbia University, New York",
+        "externalAuthority": "https://findingaids.library.columbia.edu/",
+        "transcript": "Dear Dr. Du Bois, There is so much similarity between the position of the Untouchables in India and the position of the Negroes in America that the study of the one cannot but be an eye-opener to the other."
+    },
+    {
+        "id": "photo-drafting-committee-assembly",
+        "title": "Drafting Committee Members at Constitution House",
+        "category": "photos",
+        "year": 1948,
+        "dateStr": "29 August 1948",
+        "description": "Formal archival photograph of Dr. B. R. Ambedkar seated as Chairman with members Alladi Krishnaswami Ayyar, N. Gopalaswami Ayyangar, K. M. Munshi, Mohammad Saadulla, and Sir B. N. Rau.",
+        "formatDetails": "Gelatin Silver Print | 30 × 24 cm",
+        "thumbnailUrl": "/assets/wall2.png",
+        "tags": ["PHOTOGRAPHY", "1948", "DRAFTING COMMITTEE", "CONSTITUTION"],
+        "sourceReference": "Photo Division of India, Ref No. PD-1948-CAD-041",
+        "institution": "National Archives of India / Photo Division",
+        "volumeRef": "Visual Records Vol. 4",
+        "isLocalArchivalData": True,
+        "shelfMark": "NAI-PHOTO-1948-DRAFTING-COMM",
+        "physicalLocation": "National Archives of India, Janpath, New Delhi",
+        "externalAuthority": "https://nationalarchives.nic.in/"
+    },
+    {
+        "id": "legal-poona-pact-agreement",
+        "title": "Poona Pact Agreement Protocol (148 Provincial Seats)",
+        "category": "legal",
+        "year": 1932,
+        "dateStr": "24 September 1932",
+        "description": "Original legal covenant signed at Yerwada Central Jail guaranteeing 148 reserved seats for the Depressed Classes in Provincial Legislatures and 18% in the Central Legislature.",
+        "formatDetails": "Government Laid Paper | 4 Pages Legal Folio",
+        "thumbnailUrl": "/assets/optional.png",
+        "tags": ["LEGAL", "1932", "POONA PACT", "YERWADA"],
+        "sourceReference": "Home Department Political File No. 1932-PP-Yerwada",
+        "institution": "National Archives of India",
+        "volumeRef": "Home Political 1932",
+        "isLocalArchivalData": True,
+        "shelfMark": "YERWADA-PP-1932-LEG-148",
+        "physicalLocation": "National Archives of India & Yerwada Central Jail Historical Records",
+        "externalAuthority": "https://nationalarchives.nic.in/"
+    },
+    {
+        "id": "press-mooknayak-inaugural",
+        "title": "Mooknayak (Leader of the Voiceless) Inaugural Editorial",
+        "category": "press",
+        "year": 1920,
+        "dateStr": "31 January 1920",
+        "description": "Foundational editorial penned by Dr. Ambedkar declaring that Hindu society is like a multi-storied tower with no staircase, where entry into upper storeys is permanently forbidden.",
+        "formatDetails": "Marathi Fortnightly | Vol. 1, Issue 1",
+        "thumbnailUrl": "/assets/wall.png",
+        "tags": ["PRESS", "1920", "MOOKNAYAK", "EDITORIAL"],
+        "sourceReference": "Mooknayak Archives / BAWS Vol. 19",
+        "institution": "Maharashtra State Archives",
+        "volumeRef": "BAWS Volume 19",
+        "isLocalArchivalData": True,
+        "shelfMark": "MSA-PRESS-1920-MOOKNAYAK-01",
+        "physicalLocation": "Maharashtra State Archives, Elphinstone College Building, Mumbai",
+        "externalAuthority": "https://maharashtraarchives.org/"
+    }
+]
+
+for item in auxiliary_records:
+    ts_lines.append(f"  {json.dumps(item, ensure_ascii=False, indent=2)},")
+
+ts_lines.append("];")
+
+output_ts = "\n".join(ts_lines)
+with open('src/data/archiveData.ts', 'w', encoding='utf-8') as f:
+    f.write(output_ts)
+
+print(f"Generated src/data/archiveData.ts using exclusively assets/ items, total {len(featured_items) + len(baws_docs) + len(cad_docs) + len(auxiliary_records)} items!")

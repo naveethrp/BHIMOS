@@ -1,0 +1,237 @@
+/* ==========================================================================
+   GLOBAL FOOTER — AMBEDKAR DIGITAL HERITAGE ARCHIVE
+   ========================================================================== */
+
+.global-footer {
+  background-color: var(--color-navy, #082536);
+  color: var(--color-paper-light, #FAF6F0);
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  margin-top: auto;
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}
+
+.footer-top-ornament {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #b8860b 0%, #ffd700 50%, #b8860b 100%);
+  opacity: 0.85;
+}
+
+.footer-main-container {
+  max-width: var(--max-content-width, 1440px);
+  margin: 0 auto;
+  padding: 44px 36px 36px 36px;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1.2fr 1fr;
+  gap: 36px;
+  box-sizing: border-box;
+}
+
+/* Brand & Mission Column */
+.footer-brand-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.footer-emblem-wrap {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.footer-emblem-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.4));
+}
+
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand-title {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+}
+
+.footer-brand-subtitle {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--color-gold, #A87820);
+  text-transform: uppercase;
+}
+
+.footer-mission-statement {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(250, 246, 240, 0.78);
+  margin: 0;
+  max-width: 440px;
+}
+
+.footer-terminal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(4, 17, 26, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 6px 12px;
+  border-radius: 6px;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.footer-station-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.footer-station-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(250, 246, 240, 0.85);
+}
+
+/* Nav & Collections Columns */
+.footer-nav-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-heading {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-gold, #A87820);
+  text-transform: uppercase;
+  margin: 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.footer-links-list li button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgba(250, 246, 240, 0.75);
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-links-list li button:hover {
+  color: #FFFFFF;
+  transform: translateX(3px);
+}
+
+.footer-static-item {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.82rem;
+  color: rgba(250, 246, 240, 0.7);
+  line-height: 1.4;
+}
+
+.footer-external-link {
+  color: rgba(250, 246, 240, 0.75);
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.footer-external-link:hover {
+  color: var(--color-gold, #A87820);
+  text-decoration: underline;
+}
+
+/* Bottom Legal & Heritage Bar */
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 36px;
+  background: rgba(4, 15, 23, 0.6);
+}
+
+.footer-bottom-content {
+  max-width: var(--max-content-width, 1440px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.78rem;
+  color: rgba(250, 246, 240, 0.65);
+}
+
+.footer-motto-quote {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--color-gold, #A87820);
+}
+
+.footer-copyright-text {
+  font-weight: 500;
+}
+
+/* Responsive Footer */
+@media (max-width: 1024px) {
+  .footer-main-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-main-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 18px;
+  }
+  .footer-bottom-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

@@ -1,185 +1,288 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TIMELINE_ERAS, TIMELINE_EVENTS } from '../data/timelineData';
-import { PageId } from '../types';
+import { PageId, Language } from '../types';
+import { TRANSLATIONS } from '../utils/translations';
+import {
+  resolveEraNavImage,
+  resolveEraHeroImage,
+  resolveEraBannerImage,
+  resolveTimelineEventImage
+} from '../utils/imageResolver';
 import './TimelinePage.css';
 
 interface TimelinePageProps {
   onNavigate: (page: PageId, eventId?: string) => void;
+  language?: Language;
 }
 
-export const TimelinePage: React.FC<TimelinePageProps> = ({ onNavigate }) => {
-  const [selectedEraId, setSelectedEraId] = useState<string>('constitutional-journey');
+export const TimelinePage: React.FC<TimelinePageProps> = ({ onNavigate, language = 'en' }) => {
+  const isHi = language === 'hi';
+  const t = TRANSLATIONS[language] || TRANSLATIONS.en;
+  const [selectedEraId, setSelectedEraId] = useState<string>('early-life');
+  const eraSelectorRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  const selectedEra = TIMELINE_ERAS.find((era) => era.id === selectedEraId) || TIMELINE_ERAS[4];
+  const selectedEra = TIMELINE_ERAS.find((era) => era.id === selectedEraId) || TIMELINE_ERAS[0];
+  const filteredEvents = TIMELINE_EVENTS.filter((e) => e.eraId === selectedEraId);
 
-  const filteredEvents = selectedEraId === 'all'
-    ? TIMELINE_EVENTS
-    : TIMELINE_EVENTS.filter((e) => e.eraId === selectedEraId || e.eraId === 'constitutional-journey');
+  const eraHeroPositions: Record<string, string> = {
+    'early-life': 'center bottom',
+    'higher-education': 'center bottom',
+    'social-reform': 'center bottom',
+    'political-movement': 'center bottom',
+    'constitutional-journey': 'center bottom',
+    'later-years': 'center bottom'
+  };
+
+  const eraQuotes: Record<string, { text: string; author: string }> = {
+    'early-life': {
+      text: 'Knowledge gives power, knowledge is liberation.',
+      author: 'Dr. B. R. Ambedkar'
+    },
+    'higher-education': {
+      text: 'My life is dedicated to the acquisition and diffusion of knowledge.',
+      author: 'Dr. B. R. Ambedkar'
+    },
+    'social-reform': {
+      text: 'Lost rights are never regained by appeals to conscience alone, but by relentless struggle.',
+      author: 'Dr. B. R. Ambedkar'
+    },
+    'political-movement': {
+      text: 'Educate, Agitate, Organize.',
+      author: 'Dr. B. R. Ambedkar'
+    },
+    'constitutional-journey': {
+      text: 'Constitutional morality is not a natural sentiment. It has to be cultivated.',
+      author: 'Dr. B. R. Ambedkar'
+    },
+    'later-years': {
+      text: 'I measure the progress of a community by the degree of progress which women have achieved.',
+      author: 'Dr. B. R. Ambedkar'
+    }
+  };
+
+  const activeQuote = eraQuotes[selectedEraId] || eraQuotes['early-life'];
+
+  const scrollTrack = (direction: 'left' | 'right') => {
+    if (trackRef.current) {
+      const scrollAmount = direction === 'left' ? -380 : 380;
+      trackRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="timeline-page-container">
-      {/* Title & Introduction */}
-      <header className="timeline-header-block">
-        <span className="timeline-eyebrow">CHRONOLOGICAL EXHIBITION</span>
-        <h1 className="timeline-page-title font-display">A Journey Through History</h1>
-        <p className="timeline-page-subtitle">
-          Explore pivotal eras, milestone struggles, and the constitutional evolution of modern India.
-        </p>
-      </header>
+    <div className="timeline-master-page">
+      {/* 1. TOP HERO BANNER — Matches timeline_reference */}
+      <section className="timeline-hero-stage" aria-label="Timeline Chronological Exhibition">
+        {/* Environmental & Architectural Atmosphere */}
+        <div className="timeline-atmosphere-layer" aria-hidden="true">
+          <img src="/assets/clouds.jpeg" alt="" className="timeline-sky-clouds" loading="eager" />
+          <img src="/assets/bg10.png" alt="" className="timeline-canvas-bg" loading="eager" />
+          <img src="/assets/trees.jpeg" alt="" className="timeline-env-trees" loading="lazy" />
+          <img src="/assets/gate.png" alt="" className="timeline-env-gate" loading="lazy" />
+          <div className="timeline-gradient-overlay" />
+        </div>
 
-      {/* Era Selector Tabs (Reference A Screen 3) */}
-      <nav className="era-selector-bar" aria-label="Historical Eras">
+        {/* Left Side: Ambedkar with Constitution Portrait */}
+        <div className="timeline-hero-left-cutout" aria-hidden="true">
+          <div className="timeline-tablet-motto">
+            <span>EDUCATE</span>
+            <span>AGITATE</span>
+            <span>ORGANIZE</span>
+            <span className="tablet-sig">B. R. Ambedkar</span>
+          </div>
+          <img
+            src={resolveEraHeroImage(selectedEraId)}
+            alt="Dr. B. R. Ambedkar"
+            className="timeline-hero-portrait-img"
+            style={{ objectPosition: eraHeroPositions[selectedEraId] || 'center 20%' }}
+            loading="eager"
+          />
+        </div>
+
+        {/* Right Side Composition: Parliament & Constitution Books Stack */}
+        <div className="timeline-hero-right-books" aria-hidden="true">
+          <div className="books-stack-vertical">
+            <span className="book-spine spine-const">CONSTITUTION OF INDIA</span>
+            <span className="book-spine spine-law">LAW</span>
+            <span className="book-spine spine-econ">ECONOMICS</span>
+            <span className="book-spine spine-just">SOCIAL JUSTICE</span>
+          </div>
+        </div>
+
+        {/* Center Editorial Titles */}
+        <div className="timeline-hero-center-titles">
+          <span className="timeline-hero-eyebrow">{t.timelineEyebrow}</span>
+          <h1 className="timeline-hero-heading font-display">{t.timelinePageTitle}</h1>
+          <p className="timeline-hero-description">
+            {t.timelinePageSubtitle}
+          </p>
+        </div>
+      </section>
+
+      {/* 2. ERA SELECTOR PILL BAR (6 ERAS) — Matches timeline_reference */}
+      <nav ref={eraSelectorRef} className="timeline-era-pill-bar" aria-label="Historical Eras" role="tablist">
         {TIMELINE_ERAS.map((era) => {
           const isActive = selectedEraId === era.id;
+          const thumb = resolveEraNavImage(era.id);
           return (
             <button
               key={era.id}
               type="button"
-              className={`era-tab-btn ${isActive ? 'era-tab-active' : ''}`}
+              role="tab"
+              aria-selected={isActive}
+              id={`era-pill-${era.id}`}
+              className={`era-pill-btn ${isActive ? 'era-pill-active' : ''}`}
               onClick={() => setSelectedEraId(era.id)}
-              aria-current={isActive ? 'true' : undefined}
             >
-              <div className="era-icon-wrapper">
-                {era.id === 'early-life' && '🏛️'}
-                {era.id === 'education' && '🎓'}
-                {era.id === 'social-reform' && '✊'}
-                {era.id === 'political-movement' && '🇮🇳'}
-                {era.id === 'constitutional-journey' && '⚖️'}
-                {era.id === 'legacy' && '⭐'}
+              <div className="era-pill-thumb">
+                <img src={thumb} alt="" loading="eager" />
               </div>
-              <span className="era-title">{era.title}</span>
-              <span className="era-year-range">{era.yearRange}</span>
+              <div className="era-pill-text">
+                <span className="era-pill-years">{era.yearRange}</span>
+                <span className="era-pill-name">{era.title}</span>
+              </div>
             </button>
           );
         })}
       </nav>
 
-      {/* Dynamic Era Feature Stage (Evolving by Era) */}
-      <section className="era-dynamic-stage" aria-label={`Era Exhibition: ${selectedEra.title}`}>
-        {/* Layer 1: Atmospheric Era Background */}
-        <div className="era-stage-background" aria-hidden="true">
-          <img
-            src={
-              selectedEraId === 'constitutional-journey'
-                ? '/images/composition/canvas-parchment-parliament.png'
-                : selectedEraId === 'social-reform'
-                ? '/images/composition/crowd-movement.png'
-                : selectedEraId === 'education'
-                ? '/images/composition/colonnade-gallery.png'
-                : '/images/composition/canvas-parchment-chakra.png'
-            }
-            alt=""
-            className="era-bg-texture-img"
-          />
-          <div className="era-stage-gradient"></div>
-        </div>
-
-        {/* Layer 2: Era Cutout Focal Composition */}
-        <div className="era-cutout-composition" aria-hidden="true">
-          {selectedEraId === 'constitutional-journey' && (
-            <div className="era-cutout-group">
-              <img
-                src="/images/composition/ambedkar-cutout-standing.png"
-                alt="Dr. Ambedkar holding Constitution"
-                className="era-cutout-standing-img"
-              />
-              <img
-                src="/images/composition/law-books-stack.png"
-                alt=""
-                className="era-accents-books-img"
-              />
-              <img
-                src="/images/composition/parliament-isolated.png"
-                alt=""
-                className="era-backdrop-parliament-img"
-              />
-            </div>
-          )}
-
-          {selectedEraId !== 'constitutional-journey' && (
-            <div className="era-cutout-group">
-              <img
-                src="/images/composition/ambedkar-cutout-bust.png"
-                alt="Dr. Ambedkar portrait"
-                className="era-cutout-bust-img"
-              />
-              <img
-                src="/images/composition/fountain-pen-manuscript.png"
-                alt=""
-                className="era-accents-pen-img"
-              />
-            </div>
-          )}
-        </div>
-
-        {/* Layer 3: Era Contextual Description */}
-        <div className="era-contextual-content">
-          <span className="era-badge-indicator">{selectedEra.yearRange}</span>
-          <h2 className="era-headline font-display">{selectedEra.title}</h2>
-          <p className="era-summary-text">
-            {selectedEraId === 'constitutional-journey' &&
-              'From 1947 to 1956, Dr. Ambedkar led the drafting of the Constitution of India as Chairman of the Drafting Committee, institutionalizing fundamental rights, universal franchise, and social justice for over 350 million citizens.'}
-            {selectedEraId === 'social-reform' &&
-              'The era of assertive civil rights, including the historic Mahad Satyagraha of 1927 for equal water rights, and the Kalaram Temple entry movement, awakening millions to human dignity.'}
-            {selectedEraId === 'education' &&
-              'Intellectual rigor across Columbia University and London School of Economics, authoring pioneering economic treatises on provincial finance and the problem of the rupee.'}
+      {/* 3. ACTIVE ERA HERO CARD — Matches timeline_reference */}
+      <section className="active-era-banner-card" aria-label={selectedEra.title}>
+        <div className="era-banner-left">
+          <span className="era-banner-years">{selectedEra.yearRange}</span>
+          <h2 className="era-banner-title font-display">{selectedEra.title}</h2>
+          <p className="era-banner-summary">
             {selectedEraId === 'early-life' &&
-              'Born in Mhow in 1891, overcoming systemic caste discrimination with unwavering scholastic brilliance to become the first matriculate of his community.'}
+              (isHi
+                ? '१८९१ में महू में जन्म, सामाजिक विषमताओं व भेदभाव को परास्त करते हुए अपनी मेधा से समाज के प्रथम मैट्रिकुलेट बने।'
+                : 'Born in Mhow in 1891, overcoming systemic caste discrimination with unwavering scholastic brilliance to become the first matriculate of his community.')}
+            {selectedEraId === 'higher-education' &&
+              (isHi
+                ? 'कोलंबिया विश्वविद्यालय और लंदन स्कूल ऑफ इकोनॉमिक्स में उच्च अकादमिक शोध और मौलिक आर्थिक ग्रंथ रचना।'
+                : 'Pioneering doctoral research at Columbia University and London School of Economics, shaping international scholarship and public finance.')}
+            {selectedEraId === 'social-reform' &&
+              (isHi
+                ? 'महाड़ सत्याग्रह और कालाराम मंदिर आंदोलन द्वारा शोषित वर्गों में आत्मसम्मान और मानवीय अधिकारों की अलख जगाई।'
+                : 'Leading the historic Mahad Satyagraha of 1927 at Chavdar Tank and the Kalaram Temple entry movement for civil equality and human dignity.')}
             {selectedEraId === 'political-movement' &&
-              'Founding the Independent Labour Party (1936) and Scheduled Castes Federation, championing workers rights, maternity benefits, and representation.'}
-            {selectedEraId === 'legacy' &&
-              'Inspiring enduring democratic awakenings, constitutional morality, and the moral philosophy of Liberty, Equality, and Fraternity across the world.'}
+              (isHi
+                ? 'इंडिपेंडेंट लेबर पार्टी की स्थापना, श्रम सुधार और ब्रिटिश वाइसरॉय परिषद में कामगार अधिकारों का वैधानिक संरक्षण।'
+                : 'Founding the Independent Labour Party (1936), institutionalizing the 8-hour workday, maternity benefits, and river valley projects.')}
+            {selectedEraId === 'constitutional-journey' &&
+              (isHi
+                ? 'संविधान सभा की प्रारूप समिति के अध्यक्ष के रूप में स्वतंत्र भारत के संविधान का निर्माण और मौलिक अधिकारों की स्थापना।'
+                : 'Leading the Drafting Committee as Chairman, piloting 395 Articles through 114 sittings and establishing constitutional morality and equality.')}
+            {selectedEraId === 'later-years' &&
+              (isHi
+                ? 'दीक्षाभूमि नागपुर में बौद्ध धम्म अंगीकार कर प्रज्ञा, करुणा और समता पर आधारित नवयान का शंखनाद।'
+                : 'Embracing Buddhism at Deekshabhoomi, Nagpur with over 500,000 followers, inspiring enduring ethical and democratic awakenings.')}
           </p>
+        </div>
+
+        <div className="era-banner-center-thumb" aria-hidden="true">
+          <img src={resolveEraBannerImage(selectedEraId)} alt="" loading="eager" />
+        </div>
+
+        <div className="era-banner-right-quote">
+          <blockquote className="era-quote-text font-display">
+            “{activeQuote.text}”
+          </blockquote>
+          <cite className="era-quote-author">— {activeQuote.author}</cite>
         </div>
       </section>
 
-      {/* Horizontal Timeline Track */}
-      <section className="timeline-horizontal-wrapper" aria-label="Interactive Events Track">
-        <div className="timeline-rail-line" aria-hidden="true"></div>
+      {/* 4. INTERACTIVE TIMELINE RAIL & EVENT CARDS — Matches timeline_reference */}
+      <section className="timeline-rail-section" aria-label="Timeline Milestones">
+        <div className="timeline-controls-header">
+          <button
+            type="button"
+            className="rail-nav-btn rail-btn-prev"
+            onClick={() => scrollTrack('left')}
+            aria-label="Scroll milestones left"
+          >
+            ‹
+          </button>
 
-        <div className="timeline-cards-track">
+          {/* Node Milestones Horizontal Wire */}
+          <div className="timeline-milestones-track">
+            <div className="milestones-line-gold" aria-hidden="true" />
+            <div className="milestones-nodes-row">
+              {filteredEvents.map((evt) => (
+                <div key={evt.id} className="milestone-node-item">
+                  <span className="milestone-year-label">{evt.year}</span>
+                  <div className="milestone-circle-node" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="rail-nav-btn rail-btn-next"
+            onClick={() => scrollTrack('right')}
+            aria-label="Scroll milestones right"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Event Cards Row */}
+        <div ref={trackRef} className="timeline-cards-scroll-container">
           {filteredEvents.map((evt) => (
-            <div
+            <article
               key={evt.id}
-              className="timeline-event-card-wrapper"
+              className="timeline-event-card-refined"
               onClick={() => onNavigate('event-detail', evt.id)}
               role="button"
               tabIndex={0}
-              aria-label={`Event: ${evt.year} - ${evt.title}. Click to view details.`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onNavigate('event-detail', evt.id);
+                }
+              }}
             >
-              {/* Year Pin & Node */}
-              <div className="timeline-node-header">
-                <span className="timeline-year-badge">{evt.year}</span>
-                <div className="timeline-dot-pin"></div>
+              <div className="event-card-thumb-wrap">
+                <img src={resolveTimelineEventImage(evt.id, evt.eraId, evt.thumbnailUrl)} alt="" loading="eager" />
+                <div className="event-card-icon-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                </div>
               </div>
 
-              {/* Event Card Content */}
-              <article className="timeline-event-card">
-                <div className="timeline-card-image-box">
-                  <img
-                    src={
-                      evt.id === 'drafting-committee-constitution'
-                        ? '/images/composition/ambedkar-cutout-chairman.png'
-                        : evt.thumbnailUrl
-                    }
-                    alt={evt.title}
-                    className="timeline-card-img"
-                  />
-                  {evt.id === 'drafting-committee-constitution' && (
-                    <span className="timeline-flagship-pill">Flagship Milestone</span>
-                  )}
+              <div className="event-card-body-content">
+                <div className="event-card-meta-tags">
+                  <span className="event-date-text">{evt.date.toUpperCase()}</span>
+                  <span className="event-cat-tag">
+                    {evt.eraId === 'early-life' ? 'BIRTH / EDUCATION' : 'HISTORICAL RECORD'}
+                  </span>
                 </div>
-                <div className="timeline-card-body">
-                  <span className="timeline-card-date">{evt.date}</span>
-                  <h3 className="timeline-card-title">{evt.title}</h3>
-                  <p className="timeline-card-summary">{evt.summary}</p>
+
+                <h3 className="event-card-title font-display">{evt.title}</h3>
+                <p className="event-card-summary">{evt.summary}</p>
+
+                {evt.sources?.[0] && (
+                  <div className="event-card-source-row">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                    <span><strong>Source:</strong> {evt.sources[0].title}</span>
+                  </div>
+                )}
+
+                <div className="event-card-bottom-row">
+                  <div className="circle-arrow-btn" aria-hidden="true">
+                    <span>→</span>
+                  </div>
+                  <span className="view-source-link">View Source →</span>
                 </div>
-                <div className="timeline-card-footer">
-                  <span className="timeline-expand-icon" aria-hidden="true">+</span>
-                  <span className="timeline-read-label">View Dossier</span>
-                </div>
-              </article>
-            </div>
+              </div>
+            </article>
           ))}
         </div>
       </section>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1050" width="800" height="1050">
+  <defs>
+    <filter id="paper-texture" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise"/>
+      <feDiffuseLighting in="noise" lighting-color="#F7F2E6" surfaceScale="2" result="light">
+        <feDistantLight azimuth="60" elevation="50"/>
+      </feDiffuseLighting>
+      <feBlend mode="multiply" in="SourceGraphic" in2="light"/>
+    </filter>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#7A6240" stop-opacity="0.25"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Parchment Base -->
+  <rect x="0" y="0" width="800" height="1050" fill="#F6F0E2"/>
+  <rect x="0" y="0" width="800" height="1050" fill="url(#vignette)"/>
+
+  <!-- Paper Edge Border -->
+  <rect x="25" y="25" width="750" height="1000" fill="none" stroke="#D1C3A5" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.6"/>
+  <rect x="35" y="35" width="730" height="980" fill="none" stroke="#E2D7C0" stroke-width="1" opacity="0.8"/>
+
+  <!-- Top Header Metadata -->
+  <text x="65" y="70" font-family="'Times New Roman', serif" font-size="12" letter-spacing="1.5" fill="#665544">LSE Doctoral Dissertation • 1923</text>
+  <text x="735" y="70" text-anchor="end" font-family="'Courier New', monospace" font-size="12" fill="#887766">REF: ARCHIVE-IND-1948</text>
+
+  <!-- Official Seal / Oval Stamp -->
+  <g transform="translate(680, 120)">
+    <ellipse cx="0" cy="0" rx="46" ry="32" fill="none" stroke="#8B2500" stroke-width="2" opacity="0.75" stroke-dasharray="4 2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="'Times New Roman', serif" font-size="8" font-weight="bold" fill="#8B2500" opacity="0.85">VERIFIED</text>
+    <text x="0" y="6" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#8B2500" opacity="0.85">HISTORICAL</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8B2500" opacity="0.85">FACSIMILE</text>
+  </g>
+
+  <!-- Title Heading -->
+  <text x="400" y="125" text-anchor="middle" font-family="'Times New Roman', serif" font-size="20" font-weight="bold" letter-spacing="1" fill="#1A1A1A">THE PROBLEM OF THE RUPEE: ITS ORIGIN AND ITS SOLUTION</text>
+  <text x="400" y="152" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" letter-spacing="0.5" fill="#4A4A4A">BY B. R. AMBEDKAR, D.SC. (ECON.), LONDON; BARRISTER-AT-LAW</text>
+  <line x1="65" y1="175" x2="735" y2="175" stroke="#998877" stroke-width="1.5"/>
+
+  <!-- Document Body Lines -->
+  <text x="65" y="230" font-family="Courier, 'Courier New', monospace" font-size="13.5" font-weight="normal" fill="#2C2C2C">PUBLISHED BY P. S. KING &amp; SON, LTD., ORCHARD HOUSE, WESTMINSTER</text>
+<text x="65" y="272" font-family="Courier, 'Courier New', monospace" font-size="13.5" font-weight="normal" fill="#2C2C2C">&quot;A currency system cannot be judged merely by the stability of its foreign exchange rates;</text>
+<text x="65" y="296" font-family="Courier, 'Courier New', monospace" font-size="13.5" font-weight="normal" fill="#2C2C2C">it must primarily ensure the internal stability of purchasing power for the everyday worker</text>
+<text x="65" y="320" font-family="Courier, 'Courier New', monospace" font-size="13.5" font-weight="normal" fill="#2C2C2C">and producer.</text>
+<text x="65" y="362" font-family="Courier, 'Courier New', monospace" font-size="13.5" font-weight="normal" fill="#2C2C2C">Gold standard without gold currency represents a precarious mechanism if manipulated by</text>
+<text x="65" y="386" font-family="Courier, 'Courier New', monospace" font-size="13.5" font-weight="normal" fill="#2C2C2C">imperial executive authority to penalize agricultural debtors.&quot;</text>
+
+  <!-- Margin Pencil Handwriting -->
+  <g transform="rotate(-3, 100, 940)">
+    <text x="80" y="940" font-family="'Brush Script MT', 'Segoe Script', cursive, sans-serif" font-size="19" fill="#1C355E" opacity="0.82">D.Sc. Economics Accepted — Edwin Cannan</text>
+  </g>
+
+  <!-- Bottom Archival Stamp -->
+  <rect x="65" y="975" width="670" height="34" fill="#EFE8D6" stroke="#C8BCA4" stroke-width="1" rx="4"/>
+  <text x="400" y="997" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" letter-spacing="1" font-weight="bold" fill="#5A4A3A">LONDON SCHOOL OF ECONOMICS &amp; POLITICAL SCIENCE</text>
+</svg>

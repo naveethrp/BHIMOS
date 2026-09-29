@@ -1,0 +1,379 @@
+/* ==========================================================================
+   ARCHIVAL AUDIO PLAYER — BHIMOS NATIONAL HERITAGE
+   ========================================================================== */
+
+.archival-audio-player-panel {
+  background: #082536;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  color: #FAF7F0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  margin-top: 14px;
+}
+
+.archival-audio-player-panel.player-dossier {
+  border-color: #B8860B;
+  background: linear-gradient(135deg, #061F2E 0%, #082536 100%);
+}
+
+/* 1. Archival Notice Banner */
+.audio-unavailable-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(184, 134, 11, 0.15);
+  border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+}
+
+.unavailable-icon-wrap {
+  color: #D4AF37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.unavailable-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.unavailable-title {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #F6E05E;
+  letter-spacing: 0.02em;
+}
+
+.unavailable-subtitle {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  color: #CBD5E0;
+}
+
+/* 2. Transport Container */
+.audio-transport-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  gap: 20px;
+}
+
+/* Track Identity */
+.audio-track-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 240px;
+  max-width: 320px;
+}
+
+.audio-disc-thumb {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #D4AF37;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  background: #000;
+}
+
+.disc-artwork {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.spinning-disc {
+  animation: spinDisc 6s linear infinite;
+}
+
+@keyframes spinDisc {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.disc-center-hole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #082536;
+  border: 1px solid #D4AF37;
+}
+
+.audio-track-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.audio-badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #D4AF37;
+}
+
+.sound-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #48BB78;
+  box-shadow: 0 0 8px #48BB78;
+  animation: pulseDot 1.2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.audio-track-title {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.audio-source-note {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.72rem;
+  color: #A0AEC0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Central Controls */
+.audio-central-controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 480px;
+}
+
+.audio-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn-play-pause-master {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #B8860B;
+  color: #082536;
+  border: 2px solid #D4AF37;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(184, 134, 11, 0.4);
+}
+
+.btn-play-pause-master:hover {
+  background: #D4AF37;
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+}
+
+.btn-play-pause-master:active {
+  transform: scale(0.96);
+}
+
+.btn-play-pause-master.btn-audio-disabled {
+  opacity: 0.45;
+  background: #2D3748;
+  border-color: #4A5568;
+  color: #A0AEC0;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-play-pause-master svg {
+  margin-left: 2px;
+}
+
+.btn-play-pause-master.btn-state-playing svg {
+  margin-left: 0;
+}
+
+/* Sound Wave Animation */
+.soundwave-visualizer {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 22px;
+  padding: 0 8px;
+}
+
+.wave-bar {
+  width: 3px;
+  height: 6px;
+  background-color: #D4AF37;
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.soundwave-visualizer.animating .wave-bar {
+  animation: waveMotion 1s ease-in-out infinite alternate;
+}
+
+.wave-bar.bar-1 { animation-delay: 0.1s; }
+.wave-bar.bar-2 { animation-delay: 0.3s; }
+.wave-bar.bar-3 { animation-delay: 0.5s; }
+.wave-bar.bar-4 { animation-delay: 0.2s; }
+.wave-bar.bar-5 { animation-delay: 0.6s; }
+.wave-bar.bar-6 { animation-delay: 0.4s; }
+.wave-bar.bar-7 { animation-delay: 0.7s; }
+.wave-bar.bar-8 { animation-delay: 0.3s; }
+
+@keyframes waveMotion {
+  0%   { height: 4px; }
+  100% { height: 22px; }
+}
+
+.audio-time-readout {
+  font-family: var(--font-sans, monospace);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.time-divider {
+  color: #718096;
+}
+
+.time-total {
+  color: #A0AEC0;
+}
+
+/* Progress Slider */
+.audio-progress-bar-wrap {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.audio-scrub-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.audio-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #B8860B 0%, #D4AF37 100%);
+  border-radius: 4px;
+  pointer-events: none;
+  transition: width 0.1s linear;
+}
+
+/* Aux Controls: Volume */
+.audio-aux-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.volume-control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-volume-mute {
+  background: none;
+  border: none;
+  color: #CBD5E0;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.btn-volume-mute:hover {
+  color: #D4AF37;
+}
+
+.volume-slider-input {
+  width: 80px;
+  accent-color: #D4AF37;
+  cursor: pointer;
+}
+
+.btn-close-player {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FAF7F0;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-close-player:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 860px) {
+  .audio-transport-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .audio-track-identity {
+    max-width: 100%;
+  }
+  .audio-central-controls {
+    max-width: 100%;
+  }
+}

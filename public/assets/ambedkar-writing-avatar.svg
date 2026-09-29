@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <clipPath id="circle-clip">
+      <circle cx="60" cy="60" r="54"/>
+    </clipPath>
+    <linearGradient id="avatar-gold-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCEBA4"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#8C6826"/>
+    </linearGradient>
+    <radialGradient id="avatar-bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#143652"/>
+      <stop offset="100%" stop-color="#081A28"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer Gold Rim -->
+  <circle cx="60" cy="60" r="58" fill="url(#avatar-gold-rim)"/>
+  <circle cx="60" cy="60" r="55" fill="#082536"/>
+
+  <!-- Inside Clipped Area -->
+  <g clip-path="url(#circle-clip)">
+    <!-- Rich Archival Background -->
+    <rect x="6" y="6" width="108" height="108" fill="url(#avatar-bg)"/>
+
+    <!-- Archival Warm Lighting Glow -->
+    <circle cx="60" cy="45" r="40" fill="#E2BC72" opacity="0.15"/>
+
+    <!-- Ambedkar Writing Image embedded with proper focal crop -->
+    <image
+      href="/assets/writing.png"
+      x="5"
+      y="-8"
+      width="112"
+      height="134"
+      preserveAspectRatio="xMidYMid slice"
+    />
+  </g>
+
+  <!-- Inner Gilt Border Ring -->
+  <circle cx="60" cy="60" r="54" fill="none" stroke="url(#avatar-gold-rim)" stroke-width="1.5" opacity="0.85"/>
+</svg>
