@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: bhimos-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile.backend
+    region: oregon
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: CORS_ORIGINS
+        value: "https://bhimos.vercel.app,http://localhost:5173"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PORT
+        value: "8000"
