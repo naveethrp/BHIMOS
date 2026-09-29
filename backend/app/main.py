@@ -17,11 +17,23 @@ logging.basicConfig(
 )
 logger = logging.getLogger("bhimos_api")
 
+from contextlib import asynccontextmanager
+from backend.app.core.lfs_resolver import ensure_lfs_objects_hydrated
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Ensure Git LFS objects (SQLite DB & FAISS index) are fully hydrated
+    logger.info("Initializing BHIMOS Backend — verifying database and vector assets...")
+    ensure_lfs_objects_hydrated(settings.DB_PATH, settings.FAISS_PATH)
+    yield
+    logger.info("BHIMOS Backend shutting down.")
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     description="Production API for Dr. B. R. Ambedkar Digital Heritage Archive (BHIMOS). "
-                "Provides semantic RAG retrieval, OCR transcription, and archival records access."
+                "Provides semantic RAG retrieval, OCR transcription, and archival records access.",
+    lifespan=lifespan
 )
 
 # CORS Middleware

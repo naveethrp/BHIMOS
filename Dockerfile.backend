@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tesseract-ocr-mar \
     libgomp1 \
     curl \
+    git \
+    git-lfs \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python requirements
