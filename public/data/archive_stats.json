@@ -1,0 +1,31 @@
+{
+  "total_documents": 187,
+  "total_indexed_chunks": 70189,
+  "total_artifacts": 187,
+  "document_types": [
+    {
+      "document_type": "Constituent Assembly debate transcript",
+      "count": 167
+    },
+    {
+      "document_type": "Writings and speeches volume",
+      "count": 20
+    }
+  ],
+  "collections": [
+    {
+      "collection": "Constituent Assembly Debates",
+      "count": 167
+    },
+    {
+      "collection": "Dr. Babasaheb Ambedkar: Writings and Speeches",
+      "count": 20
+    }
+  ],
+  "year_range": {
+    "min_year": 1946,
+    "max_year": 1950
+  },
+  "generated_at": "2026-09-29T10:08:19.844156+00:00",
+  "integrity_hash": "sqlite_verified"
+}

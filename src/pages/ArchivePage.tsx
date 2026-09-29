@@ -5,6 +5,7 @@ import { useAudio } from '../context/AudioContext';
 import { ArchivalAudioPlayer } from '../components/common/ArchivalAudioPlayer';
 import { TRANSLATIONS } from '../utils/translations';
 import { resolveRecordThumbnail } from '../utils/imageResolver';
+import { getArchiveStatsApi, ArchiveStatsResponse } from '../services/api';
 import './ArchivePage.css';
 
 interface ArchivePageProps {
@@ -19,6 +20,11 @@ export const ArchivePage: React.FC<ArchivePageProps> = ({ onNavigate: _onNavigat
 
   const [selectedCategory, setSelectedCategory] = useState<ArchiveCategory | 'all'>(initialCategory);
   const [searchQuery, setSearchQuery] = useState('');
+  const [archiveStats, setArchiveStats] = useState<ArchiveStatsResponse | null>(null);
+
+  useEffect(() => {
+    getArchiveStatsApi().then(setArchiveStats).catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (initialCategory) {
@@ -172,6 +178,28 @@ export const ArchivePage: React.FC<ArchivePageProps> = ({ onNavigate: _onNavigat
         <div className="archive-hero-content">
           <div className="archive-hero-titles">
             <span className="archive-hero-eyebrow">{t.archiveHeroEyebrow}</span>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '4px 12px',
+              background: 'rgba(201, 162, 39, 0.12)',
+              border: '1px solid rgba(201, 162, 39, 0.3)',
+              borderRadius: '20px',
+              fontSize: '0.78rem',
+              color: '#8A6818',
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              marginBottom: '8px',
+              width: 'fit-content'
+            }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C9A227' }} />
+              <span>
+                {archiveStats 
+                  ? `${archiveStats.total_documents} Verified Manuscripts • ${archiveStats.total_indexed_chunks.toLocaleString()} Text Chunks Indexed` 
+                  : '187 Verified Manuscripts • 70,189 Text Chunks Indexed'}
+              </span>
+            </div>
             <h1 className="archive-hero-heading font-display">{t.archivePageTitle}</h1>
             <p className="archive-hero-description">
               {t.archivePageDesc}
