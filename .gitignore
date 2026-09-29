@@ -53,13 +53,12 @@ data/backups/
 .temp*
 scratch/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Raw source assets, data extractions, and temporary work directories
+assets/
+communicate/
+data/originals/
+data/processed/
+data/reports/
+reference/Done/
+reference/ref/
+
